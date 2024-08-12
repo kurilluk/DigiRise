@@ -1,0 +1,19 @@
+# Godot 4+ specific ignores
+.godot/
+.import/
+
+# my custom ignores
+_export/
+_screenshot/
+
+# experimental ignores
+#*.import
+*.tmp
+*.cfg
+*.bin
+
+# System/tool-specific ignores
+.directory
+.DS_Store
+*~
+*.blend1
