@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgcxagbscrgb5"]
+
+[ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="1_wiyct"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 148.0
+offset_bottom = 276.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Employee" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
+
+[node name="Employee2" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
+
+[node name="Employee3" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
+
+[node name="Employee4" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
+
+[node name="Employee5" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
+
+[node name="Employee6" parent="GridContainer" instance=ExtResource("1_wiyct")]
+layout_mode = 2
