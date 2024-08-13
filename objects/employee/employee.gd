@@ -7,6 +7,7 @@ class_name Employee extends Control
 @onready var level = %Level
 @onready var meeple = %Meeple
 
+const MEEPLE_CURSOR = preload("res://objects/employee/meeple_cursor.tscn")
 const Meeple_texture = preload("res://assets/vectors/MeepleCustom5.svg") 
 const Meeple_drag_texture = preload("res://assets/vectors/MeepleCustom4.svg") 
 
@@ -90,13 +91,15 @@ func unload_level_data(data: Employee):
 func make_drag_preview() -> Control:
 	var preview_texture = TextureRect.new()
  
-	preview_texture.texture = Meeple_drag_texture
-	preview_texture.expand_mode = 1
-	preview_texture.size = Vector2(130,130)
+	#preview_texture.texture = Meeple_drag_texture
+	#preview_texture.expand_mode = 1
+	#preview_texture.size = Vector2(130,130)
  
-	var preview = Control.new()
+	#var preview = Control.new()
+	var preview = MEEPLE_CURSOR.instantiate() 
 	preview.add_child(preview_texture)
-	preview_texture.position = -0.5 * preview_texture.size
+	preview.set_meeple_level(_level_number)
+	#preview_texture.position = -0.5 * preview_texture.size
 	return preview
 	
 #func _on_pressed():
