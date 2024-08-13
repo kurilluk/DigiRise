@@ -132,3 +132,5 @@ size_flags_horizontal = 8
 [node name="Employees" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Resources/External"]
 layout_mode = 2
 alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/TopPanel/Button" to="VBoxContainer/CentralPanel/Market" method="_on_next_phase_button_pressed"]

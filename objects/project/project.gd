@@ -24,7 +24,7 @@ func check_project_status():
 	if req_employees.get_child_count() == m_count:
 		print("The project meets the requirements and can be executed/implemented/realized.")
 
-func set_requirements(req_levels:Array[int]):
+func set_requirements(req_levels):
 	for req_level in req_levels:
 		create_req_employee(req_level)
 	pass
