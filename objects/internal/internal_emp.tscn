@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://be4jix1rfao38"]
+
+[ext_resource type="Script" path="res://objects/internal/internal_emp.gd" id="1_t6f07"]
+
+[node name="Internal" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+size_flags_horizontal = 4
+script = ExtResource("1_t6f07")
+
+[node name="Employees" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1

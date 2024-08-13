@@ -27,7 +27,7 @@ func create_new_project(phase: int) -> void:
 	var req = PROJECT_TYPES[randi() % PROJECT_TYPES.size()]
 	new_project.set_requirements(increase_project_reg(req,phase))
 
-func increase_project_reg(requirements, phase):
+func increase_project_reg(requirements, phase) -> Array[int]:
 	var results: Array[int] = []
 	for req in requirements:
 		results.append(get_increased_level(req,phase))

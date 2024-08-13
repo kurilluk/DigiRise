@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://screens/main/game_logic.gd" id="1_677oh"]
 [ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="1_765yv"]
 [ext_resource type="PackedScene" uid="uid://qfgj17dwemc6" path="res://objects/project/project.tscn" id="1_hqvik"]
-[ext_resource type="Script" path="res://screens/main/internal_team.gd" id="2_mo4r6"]
 [ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="3_2v47i"]
+[ext_resource type="PackedScene" uid="uid://be4jix1rfao38" path="res://objects/internal/internal_emp.tscn" id="5_ejjmo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iduvf"]
 
@@ -26,7 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,11 +35,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="TopPanel" type="PanelContainer" parent="VBoxContainer"]
+[node name="TopPanel" type="PanelContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/TopPanel"]
+[node name="Button" type="Button" parent="MainContainer/TopPanel"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -53,16 +53,16 @@ text = "Done
 Continue to Next Phase"
 icon_alignment = 1
 
-[node name="CentralPanel" type="HBoxContainer" parent="VBoxContainer"]
+[node name="CentralPanel" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="LeftPanel" type="PanelContainer" parent="VBoxContainer/CentralPanel"]
+[node name="LeftPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Butget" type="Label" parent="VBoxContainer/CentralPanel/LeftPanel"]
+[node name="Butget" type="Label" parent="MainContainer/CentralPanel/LeftPanel"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -73,64 +73,57 @@ INCOME:
 - 1240
 "
 
-[node name="Market" parent="VBoxContainer/CentralPanel" instance=ExtResource("1_765yv")]
+[node name="Market" parent="MainContainer/CentralPanel" instance=ExtResource("1_765yv")]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 
-[node name="RightPanel" type="PanelContainer" parent="VBoxContainer/CentralPanel"]
+[node name="RightPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Support" parent="VBoxContainer/CentralPanel/RightPanel" instance=ExtResource("1_hqvik")]
+[node name="Support" parent="MainContainer/CentralPanel/RightPanel" instance=ExtResource("1_hqvik")]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="BottomPanel" type="PanelContainer" parent="VBoxContainer"]
+[node name="BottomPanel" type="PanelContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Resources" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
+[node name="Resources" type="HBoxContainer" parent="MainContainer/BottomPanel"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="External3" type="PanelContainer" parent="VBoxContainer/BottomPanel/Resources"]
+[node name="External3" type="PanelContainer" parent="MainContainer/BottomPanel/Resources"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Employees" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Resources/External3"]
+[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel/Resources/External3"]
 layout_mode = 2
 alignment = 1
 
-[node name="Employee" parent="VBoxContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
+[node name="Employee" parent="MainContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Employee3" parent="VBoxContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
+[node name="Employee3" parent="MainContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Employee2" parent="VBoxContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
+[node name="Employee2" parent="MainContainer/BottomPanel/Resources/External3/Employees" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Internal" type="PanelContainer" parent="VBoxContainer/BottomPanel/Resources"]
-custom_minimum_size = Vector2(400, 0)
+[node name="Internal" parent="MainContainer/BottomPanel/Resources" instance=ExtResource("5_ejjmo")]
 layout_mode = 2
-size_flags_horizontal = 4
-script = ExtResource("2_mo4r6")
 
-[node name="Employees" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Resources/Internal"]
-layout_mode = 2
-alignment = 1
-
-[node name="External" type="PanelContainer" parent="VBoxContainer/BottomPanel/Resources"]
+[node name="External" type="PanelContainer" parent="MainContainer/BottomPanel/Resources"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Employees" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Resources/External"]
+[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel/Resources/External"]
 layout_mode = 2
 alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/TopPanel/Button" to="VBoxContainer/CentralPanel/Market" method="_on_next_phase_button_pressed"]
+[connection signal="pressed" from="MainContainer/TopPanel/Button" to="MainContainer/CentralPanel/Market" method="_on_next_phase_button_pressed"]

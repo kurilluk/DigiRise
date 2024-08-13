@@ -1,15 +1,7 @@
 extends Node
 
-#const PRICES_D: Dictionary = {
-	#1: { "level": 1, "price": 1000 },
-	#2: { "level": 2, "cols": 1200 },
-	#3: { "rows": 3, "cols": 1400 },
-	#4: { "rows": 5, "cols": 5 },
-	#5: { "rows": 5, "cols": 7 }
-	#}
-	#
-#const EMPLOYEES: Array[int] = []
 
+const PROFIT: float = 1.5
 const PRICES: Array[int] = [
 	100,
 	120,
@@ -24,7 +16,20 @@ const PRICES: Array[int] = [
 	300
 ]
 
+# GLOBAL STEP
+var _step: int = 0
+var STEP: int:
+	get:
+		return _step
+		
+func reset_step_counter():
+	_step = 0
+	
+func next_step():
+	_step += 1
 
+
+# hack for missing event when misslead drop happen
 func _input(event):
 	#print("lisen events")
 	if event is InputEventMouseButton:

@@ -46,9 +46,11 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "level"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level" type="Label" parent="Layout"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 3
 text = "level"
@@ -83,4 +85,4 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "price"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
