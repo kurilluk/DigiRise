@@ -1,6 +1,7 @@
 class_name Project
 extends Control
 
+@onready var background = %BG_Color
 @onready var req_employees = %Requirements
 const MEEPLE = preload("res://objects/employee/employee.tscn")
 
@@ -23,6 +24,9 @@ func check_project_status():
 	print("Req:%s / Ins:%s" % [req_employees.get_child_count(), m_count])
 	if req_employees.get_child_count() == m_count:
 		print("The project meets the requirements and can be executed/implemented/realized.")
+		background.color = Color("2a7d4b")
+	else :
+		background.color = Color("222222")
 
 func set_requirements(req_levels):
 	for req_level in req_levels:
