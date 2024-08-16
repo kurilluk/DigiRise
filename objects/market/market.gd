@@ -9,7 +9,8 @@ const PROJECT_TYPES = [
 	[2,0],
 	[2,1],
 	[2,2,0],
-	[3,1]
+	[3,1],
+	[2,1,1,0]
 ]
 
 var _projects_count = 4
@@ -19,6 +20,7 @@ var _phase = 1
 func _ready():
 	offers.columns = 2
 	generate_projects(_projects_count,_phase)
+	SignalManager.on_new_step.connect(on_next_step)
 
 func create_new_project(phase: int) -> void:
 	var new_project = PROJECT.instantiate()
@@ -44,15 +46,27 @@ func get_increased_level(level: int, round: int) -> int:
 func generate_projects(count: int, phase: int) -> void:
 	for project in range(count):
 		create_new_project(phase)
-
-func generate_project_requirements():
-	pass
+#
+#func generate_project_requirements():
+	#pass
 
 func clear_projects_on_market():
 	for project in offers.get_children():
 		project.queue_free()
 
-func _on_next_phase_button_pressed():
+func on_next_step():
 	clear_projects_on_market()
 	_phase = _phase + 1
 	generate_projects(_projects_count, _phase)
+	
+func calculate_income() -> int:
+	var income = 0
+	for project in offers.get_children():
+		if project is Project:
+			income += project._income
+			#if project._is_done:
+				#income += project._price
+	#print("Income is " + income)
+	return income
+	
+

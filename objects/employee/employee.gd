@@ -12,7 +12,7 @@ const Meeple_texture = preload("res://assets/vectors/MeepleCustom5.svg")
 const Meeple_drag_texture = preload("res://assets/vectors/MeepleCustom4.svg") 
 
 var _level_number: int = -1
-var _level_price: int = -1
+var _level_price: int = 0
 var _required_level: int = -1
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +33,9 @@ func set_level_number(level_num: int) -> void:
 
 func load_texture():
 	meeple.texture = Meeple_texture
+	
+func get_price() -> int:
+	return _level_price
  
 ### DRAG DATA
 func _get_drag_data(_at_position):
@@ -68,6 +71,13 @@ func _drop_data(_pos, data):
 	##if data != self:
 	#data.texture = temp
 	
+func empty_data():
+	meeple.texture = null
+	_level_number = -1
+	_level_price = 0
+	level.text = "---"
+	price.text = "---"
+	
 func switch_data(new_data : Employee):
 	var temp_level = _level_number
 	set_level_number(new_data._level_number)
@@ -82,7 +92,7 @@ func update_data(new_data : Employee):
 
 func unload_level_data(data: Employee):
 	data._level_number = -1
-	data._level_price = -1
+	data._level_price = 0
 	#label.text = "%sx%s" % [l_data.rows, l_data.cols]
 	data.level.text = "---"
 	data.price.text = "---"
