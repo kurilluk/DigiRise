@@ -62,11 +62,16 @@ func on_next_step():
 func calculate_income() -> int:
 	var income = 0
 	for project in offers.get_children():
-		if project is Project:
+		if project is Project && !project.is_queued_for_deletion():
 			income += project._income
 			#if project._is_done:
 				#income += project._price
 	#print("Income is " + income)
 	return income
 	
-
+func get_employees() -> Array[int]:
+	var list: Array[int]
+	for project in offers.get_children():
+		if project is Project:
+			list.append_array(project.get_employees())
+	return list

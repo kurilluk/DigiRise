@@ -4,7 +4,7 @@ extends PanelContainer
 @onready var expenses_value = %Expenses_value
 const MEEPLE = preload("res://objects/employee/employee.tscn")
 
-var EMPLOYEES_levels: Array[int] = [0,0,1,1,2,3,4,5,8,10]
+var EMPLOYEES_levels: Array[int] = [0,0,1,1,2,3]
 
 var _expanses: int
 
@@ -26,13 +26,27 @@ func initialze_employees() -> void:
 	for meeple_level in EMPLOYEES_levels:
 		create_employee_meeple(meeple_level)
 	update_expanses()
+	
+func generate_employees(levels:Array[int]) -> void:
+	for meeple_level in levels:
+		create_employee_meeple(meeple_level)
+	update_expanses()
 
 func calculate_expenses() -> int:
 	var expanses = 0
 	for emp in employees.get_children():
-		if emp is Employee:
+		if emp is Employee && !emp.is_queued_for_deletion():
 			expanses += emp._level_price
 	return expanses
+
+func get_employees() -> Array[int]:
+	var list: Array[int]
+	for emp in employees.get_children():
+		if emp is Employee: # TODO is not external
+			var level = emp._level_number
+			if !emp._external && level >= 0:
+				list.append(level)
+	return list
 
 func update_expanses():
 	_expanses = calculate_expenses()
@@ -41,7 +55,7 @@ func update_expanses():
 func get_expanses() -> int:
 	return _expanses
 
-func clear_intern():
+func clear_employees():
 	for emp in employees.get_children():
 		emp.queue_free()
 

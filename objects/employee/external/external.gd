@@ -15,6 +15,7 @@ func create_employee_meeple(ln: int) -> void:
 	employees.add_child(new_meeple)
 	new_meeple.set_level_number(ln)
 	new_meeple.load_texture()
+	new_meeple._external = true
 
 func setup_grid() -> void:
 	for meeple_level in EMPLOYEES_levels:

@@ -15,11 +15,15 @@ var _level_number: int = -1
 var _level_price: int = 0
 var _required_level: int = -1
 
+#var _active
+var _external: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	level.text = "---"
 	price.text = "---"
 	req_level.text = ""
+	_external = false
 
 func set_requred_level_number(level_num: int) -> void:
 	_required_level = level_num
@@ -77,6 +81,7 @@ func empty_data():
 	_level_price = 0
 	level.text = "---"
 	price.text = "---"
+	_external = false
 	
 func switch_data(new_data : Employee):
 	var temp_level = _level_number

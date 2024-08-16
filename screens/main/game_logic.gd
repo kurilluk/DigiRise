@@ -29,7 +29,7 @@ var _expenses
 var _profit_loss: int 
 
 func _ready():
-	SignalManager.on_project_meeple_change.connect(check_status)
+	SignalManager.on_project_change.connect(check_status)
 	_capital = 1500
 	_step = 1
 	update_capital()
@@ -103,6 +103,11 @@ func _on_next_phase_button_pressed():
 
 func reset_board():
 	# build list of used employees
+	var list_of_employees:Array[int]
+	list_of_employees.append_array(market.get_employees())
+	list_of_employees.append_array(internal.get_employees())
+	list_of_employees.sort()
+
 	# remove fired emp.
 	fire_only.fire_employees()
 	# reset hiring offer?
@@ -112,7 +117,8 @@ func reset_board():
 	external.clear_intern()
 	external.setup_grid()
 	
-	internal.clear_intern()
-	internal.initialze_employees() #TODO list of used employees
+	internal.clear_employees()
+	internal.generate_employees(list_of_employees) #TODO list of used employees
+	#reset market offer
 	SignalManager.on_new_step.emit()
 	update_profit_loss()

@@ -38,6 +38,7 @@ func check_project_status():
 		background.color = Color("4d4d4d")
 		_is_done = false
 	update_income()
+	SignalManager.on_project_change.emit()
 
 func update_income():
 	var expanses = calculate_real_expanses()
@@ -79,11 +80,20 @@ func calculate_expected_expanses(req_levels: Array[int]) -> int:
 func calculate_real_expanses() -> int:
 	var value = 0
 	for req_emp in req_employees.get_children():
-		if req_emp is Employee: # TODO is active
+		if req_emp is Employee && !req_emp.is_queued_for_deletion(): # TODO is active? avoid empty, also external
 			var price = req_emp.get_price()
 			if price > 0:
 				value += price
 	return value
+	
+func get_employees() -> Array[int]:
+	var list: Array[int]
+	for emp in req_employees.get_children():
+		if emp is Employee && !emp.is_queued_for_deletion(): # TODO is not external
+			var level = emp._level_number
+			if !emp._external && level >= 0:
+				list.append(level)
+	return list
 	
 func set_project_price(value: int):
 	_price = value
