@@ -6,6 +6,7 @@ class_name Employee extends Control
 @onready var price = %Price
 @onready var level = %Level
 @onready var meeple = %Meeple
+@onready var sound = $Sound
 
 const MEEPLE_CURSOR = preload("res://objects/employee/meeple_cursor.tscn")
 const Meeple_texture = preload("res://assets/vectors/MeepleCustom5.svg") 
@@ -40,10 +41,11 @@ func load_texture():
 	
 func get_price() -> int:
 	return _level_price
- 
+	
 ### DRAG DATA
 func _get_drag_data(_at_position):
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	SoundManager.play_drag_click(sound)
 	if meeple.texture == null:
 		return null
 	set_drag_preview(make_drag_preview())
@@ -61,6 +63,7 @@ func _can_drop_data(_pos, data):
  
 func _drop_data(_pos, data):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	SoundManager.play_drop_click(sound)
 	if meeple.texture == null: # no Meeple
 		update_data(data)
 	elif _level_number >= data._required_level:  # check if new swithced meeple will not have lower level as required
@@ -104,7 +107,7 @@ func unload_level_data(data: Employee):
 
 	
 func make_drag_preview() -> Control:
-	var preview_texture = TextureRect.new()
+	#var preview_texture = TextureRect.new()
  
 	#preview_texture.texture = Meeple_drag_texture
 	#preview_texture.expand_mode = 1
@@ -112,8 +115,10 @@ func make_drag_preview() -> Control:
  
 	#var preview = Control.new()
 	var preview = MEEPLE_CURSOR.instantiate() 
-	preview.add_child(preview_texture)
-	preview.set_meeple_level(_level_number)
+	preview.get_node("Texture").modulate = Color("#117796") #self.modulate #Color(12,119,150)
+	preview.get_node("Level").text = str(self._level_number) 
+	#preview.add_child(preview_texture)
+	#preview.set_meeple_level(_level_number)
 	#preview_texture.position = -0.5 * preview_texture.size
 	return preview
 	

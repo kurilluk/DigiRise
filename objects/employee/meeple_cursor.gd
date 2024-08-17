@@ -1,6 +1,11 @@
 extends Control
 
-@onready var meeple_level = %MeepleLevel
+@onready var meeple_level = %Level
+@onready var texture = %Texture
 
 func set_meeple_level(level: int):
-	%MeepleLevel.text = str(level)
+	meeple_level.text = str(level)
+
+func set_color(color : Color):
+	texture.modulate = color
+	

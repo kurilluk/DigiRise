@@ -19,11 +19,14 @@ config/icon="res://icon.svg"
 
 GameManager="*res://autoloads/game_manager.gd"
 SignalManager="*res://autoloads/signal_manager.gd"
+Music="*res://autoloads/music.tscn"
+SoundManager="*res://autoloads/sound_manager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [rendering]
 

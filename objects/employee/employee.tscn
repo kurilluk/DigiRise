@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv73rqal2aqgs"]
 
 [ext_resource type="Script" path="res://objects/employee/employee.gd" id="1_oqnbl"]
-[ext_resource type="Texture2D" uid="uid://qctqwntldpcq" path="res://assets/vectors/Meeple.svg" id="2_glni8"]
+[ext_resource type="Texture2D" uid="uid://qctqwntldpcq" path="res://assets/vectors/Meeple_rect.svg" id="2_eorqj"]
 
 [node name="Employee" type="Control"]
 custom_minimum_size = Vector2(64, 128)
@@ -69,7 +69,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_glni8")
+texture = ExtResource("2_eorqj")
 expand_mode = 1
 stretch_mode = 3
 
@@ -96,3 +96,5 @@ size_flags_vertical = 3
 text = "price"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
