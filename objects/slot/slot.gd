@@ -2,44 +2,65 @@ class_name Slot extends Control
 
 #@onready var sound = $Sound
 
-@onready var req_level = %Req_Level
-@onready var price = %Price
-@onready var level = %Level
-@onready var meeple: Meeple = %Meeple
+@onready var min_lvl_label = %Min_level_label
+#@onready var price_label = %Price_label
+#@onready var lvl_label = %Level_label
+@onready var meeple_slot = %Meeple_slot
 
-const MEEPLE_CURSOR = preload("res://objects/employee/meeple_cursor.tscn")
-const Meeple_texture = preload("res://assets/vectors/MeepleCustom5.svg") 
-const Meeple_drag_texture = preload("res://assets/vectors/MeepleCustom4.svg") 
+#const MEEPLE_CURSOR = preload("res://objects/cursor/meeple_cursor.tscn")
 
-var _level_number: int = -1
-var _level_price: int = 0
-var _required_level: int = -1
+var _lvl: int = -1
+var _price: int = 0
+var _min_lvl: int = -1
 
+@export var allowed_types : Array[MM.TYPES] = []
+@export var current_meeple: Meeple
+
+func register_meeple(meeple: Meeple):
+	pass
+
+#func _ready():
+	#meeple_slot = Meeple.new(1,self,MM.TYPES.INTERNAL)
+	#if current_meeple: #!= null
+		#var parent = current_meeple.get_parent()
+		#current_meeple.reparent(meeple_slot,false)
+		#meeple_slot.add_child(current_meeple)
+
+func can_place_meeple(meeple: Meeple):
+	return meeple.get_level() >= _min_lvl and meeple.get_type() in allowed_types
+
+func place_meeple(meeple: Meeple) -> bool:
+	if can_place_meeple(meeple):
+		#current_figurine = meeple.instance() # - is it needed to create and instance? or just move the meeple in the structure
+		#add_child(current_figurine) # - ADD TO SLOT
+		return true
+	return false
+	
 ##var _active
 #var _external: bool
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
-	#level.text = "---"
+	#lvl_label.text = "---"
 	#price.text = "---"
-	#req_level.text = ""
+	#req_lvl_label.text = ""
 	#_external = false
 
-#func set_requred_level_number(level_num: int) -> void:
-	#_required_level = level_num
-	#req_level.text = "%s" % [_required_level]
+#func set_requred_lvl_label_number(lvl_label_num: int) -> void:
+	#_required_lvl_label = lvl_label_num
+	#req_lvl_label.text = "%s" % [_required_lvl_label]
 #
-func set_level_number(level_num: int) -> void:
-	_level_number = level_num
-	_level_price = GameManager.PRICES[_level_number]
-	level.text = "%s" % [_level_number]
-	price.text = "%s" % [_level_price]
+func setup(level: int) -> void:
+	_lvl = level
+	_price = GameManager.PRICES[level]
+	#lvl_label.text = "%s" % [level]
+	#price_label.text = "%s" % [level]
 
 #func load_texture():
 	#meeple.texture = Meeple_texture
 	
 #func get_price() -> int:
-	#return _level_price
+	#return _lvl_label_price
  
 #### DRAG DATA
 #func _get_drag_data(_at_position):
@@ -50,34 +71,51 @@ func set_level_number(level_num: int) -> void:
 	#return self
 	 
 ### DROP DATA
-func _can_drop_data(_pos, data):
-	if data is Meeple:
-		#if _required_level <= data._level_number:
-		print(data._level)
-		return true
-		
-	return false
-	#typeof(data) == 
-	#data is Texture2D
- 
+func _can_drop_data(_pos, data) -> bool:
+	return true
+	#if data is Meeple:
+		##if _required_lvl_label <= data._lvl_label_number:
+		#print(data._lvl_label)
+		#return true
+		#
+	#return false
+	##typeof(data) == 
+	##data is Texture2D
+ #
 func _drop_data(_pos, data):
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	print("droped")
-	#meeple.modulate = data.modulate
-	var input_slot = data.slot
-	if input_slot != null:
-		input_slot.set_meeple(meeple)
-	meeple = data
-	data.slot = self
+	# Step 1: Save the global position of the node before reparenting
+	var global_position = data.global_position
+	
+	# Step 2: Remove the node from its current parent
+	if data.get_parent():
+		data.get_parent().remove_child(data)
+	
+	data.set_position(Vector2.ZERO)
+	# Step 3: Add the node to the new parent
+	meeple_slot.add_child(data)
+	
+	## Step 4: Convert the saved global position to the new parent's local coordinates
+	#data.position = meeple_slot.to_local(global_position)
+	
+	#data.reparent(meeple_slot,false)
+	
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#print("droped")
+	##meeple.modulate = data.modulate
+	#var input_slot = data.slot
+	#if input_slot != null:
+		#input_slot.set_meeple(meeple)
+	#meeple = data
+	#data.slot = self
 	
 	#switch_data(data)
 	
 	#if meeple.texture == null: # no Meeple
 		#update_data(data)
-	#elif _level_number >= data._required_level:  # check if new swithced meeple will not have lower level as required
+	#elif _lvl_label_number >= data._required_lvl_label:  # check if new swithced meeple will not have lower lvl_label as required
 		#switch_data(data)
 	#else:
-		#print("Swith is not possible - you cannot downgrade level of meeple (on that spot)! >> play sound - wrong")
+		#print("Swith is not possible - you cannot downgrade lvl_label of meeple (on that spot)! >> play sound - wrong")
 		#return
 	#SignalManager.on_project_meeple_change.emit()
 	
@@ -88,29 +126,29 @@ func _drop_data(_pos, data):
 	
 #func empty_data():
 	#meeple.texture = null
-	#_level_number = -1
-	#_level_price = 0
-	#level.text = "---"
+	#_lvl_label_number = -1
+	#_lvl_label_price = 0
+	#lvl_label.text = "---"
 	#price.text = "---"
 	#_external = false
 	#
-func switch_data(new_data : Meeple):
-	var temp_level = _level_number
-	set_level_number(new_data._level)
-	new_data.set_level_number(temp_level)
+#func switch_data(new_data : Meeple):
+	#var temp_lvl = _lvl
+	#setup(new_data._lvl)
+	#new_data.setup(temp_lvl)
+#
+#func update_data(new_data : Meeple):
+	##load_texture()
+	#setup(new_data._lvl)
+	#
+	#new_data.meeple.texture = null
+	#unload_lvl_label_data(new_data)
 
-func update_data(new_data : Meeple):
-	#load_texture()
-	set_level_number(new_data._level)
-	
-	new_data.meeple.texture = null
-	unload_level_data(new_data)
-
-func unload_level_data(data: Meeple):
-	data._level_number = -1
-	data._level_price = 0
+func unload_lvl_label_data(data: Meeple):
+	data._lvl_label_number = -1
+	data._lvl_label_price = 0
 	#label.text = "%sx%s" % [l_data.rows, l_data.cols]
-	data.level.text = "---"
+	data.lvl_label.text = "---"
 	data.price.text = "---"
 #
 	#
@@ -124,10 +162,10 @@ func unload_level_data(data: Meeple):
 	##var preview = Control.new()
 	#var preview = MEEPLE_CURSOR.instantiate() 
 	#preview.add_child(preview_texture)
-	#preview.set_meeple_level(_level_number)
+	#preview.set_meeple_lvl_label(_lvl_label_number)
 	##preview_texture.position = -0.5 * preview_texture.size
 	#return preview
 	
 #func _on_pressed():
 	#SoundManager.play_button_click(sound)
-	#SignalManager.on_level_selected.emit(_level_number)
+	#SignalManager.on_lvl_label_selected.emit(_lvl_label_number)

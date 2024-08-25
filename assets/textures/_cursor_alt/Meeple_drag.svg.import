@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5iar82hhjv5n"
-path="res://.godot/imported/Meeple_stroke_drag.svg-7eef1827e9d86281ae505d8b816b269c.ctex"
+uid="uid://yf5u8wvtkh0i"
+path="res://.godot/imported/Meeple_drag.svg-906c539aa43d1d6bfddad45e64b81090.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/vectors/Meeple_stroke_drag.svg"
-dest_files=["res://.godot/imported/Meeple_stroke_drag.svg-7eef1827e9d86281ae505d8b816b269c.ctex"]
+source_file="res://assets/textures/_cursor_alt/Meeple_drag.svg"
+dest_files=["res://.godot/imported/Meeple_drag.svg-906c539aa43d1d6bfddad45e64b81090.ctex"]
 
 [params]
 

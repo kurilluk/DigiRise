@@ -8,9 +8,9 @@ class_name Employee extends Control
 @onready var meeple = %Meeple
 @onready var sound = $Sound
 
-const MEEPLE_CURSOR = preload("res://objects/employee/meeple_cursor.tscn")
-const Meeple_texture = preload("res://assets/vectors/MeepleCustom5.svg") 
-const Meeple_drag_texture = preload("res://assets/vectors/MeepleCustom4.svg") 
+const MEEPLE_CURSOR = preload("res://objects/cursor/meeple_cursor.tscn")
+const Meeple_texture = preload("res://assets/textures/_meeple_alt/MeepleCustom5.svg") 
+const Meeple_drag_texture = preload("res://assets/textures/_meeple_alt/MeepleCustom4.svg") 
 
 var _level_number: int = -1
 var _level_price: int = 0
@@ -115,8 +115,9 @@ func make_drag_preview() -> Control:
  
 	#var preview = Control.new()
 	var preview = MEEPLE_CURSOR.instantiate() 
-	preview.get_node("Texture").modulate = Color("#117796") #self.modulate #Color(12,119,150)
-	preview.get_node("Level").text = str(self._level_number) 
+	#preview.get_node("Texture").modulate = Color("#117796") #self.modulate #Color(12,119,150)
+	#preview.get_node("Level_label").text = str(self._level_number) 
+	preview.setup(self._level_number,Color("#117796"))
 	#preview.add_child(preview_texture)
 	#preview.set_meeple_level(_level_number)
 	#preview_texture.position = -0.5 * preview_texture.size

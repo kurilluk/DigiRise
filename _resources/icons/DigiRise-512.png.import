@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qctqwntldpcq"
-path="res://.godot/imported/Meeple_rect.svg-be6b4eddc678303187d95aa80155b56b.ctex"
+uid="uid://yi7txgo2r64y"
+path="res://.godot/imported/DigiRise-512.png-4f4b41cf5213c3f5af9cc129df9e0093.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/vectors/Meeple_rect.svg"
-dest_files=["res://.godot/imported/Meeple_rect.svg-be6b4eddc678303187d95aa80155b56b.ctex"]
+source_file="res://_resources/icons/DigiRise-512.png"
+dest_files=["res://.godot/imported/DigiRise-512.png-4f4b41cf5213c3f5af9cc129df9e0093.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

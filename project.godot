@@ -10,17 +10,18 @@ config_version=5
 
 [application]
 
-config/name="DigiRise"
+config/name="DigiRiSE"
 run/main_scene="res://screens/main/main_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://_resources/icons/icon.svg"
 
 [autoload]
 
-GameManager="*res://autoloads/game_manager.gd"
-SignalManager="*res://autoloads/signal_manager.gd"
-Music="*res://autoloads/music.tscn"
-SoundManager="*res://autoloads/sound_manager.gd"
+GameManager="*res://autoload/game_manager.gd"
+SignalManager="*res://autoload/signal_manager.gd"
+Music="res://autoload/music.tscn"
+SoundManager="*res://autoload/sound_manager.gd"
+MM="*res://autoload/MM.gd"
 
 [display]
 

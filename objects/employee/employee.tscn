@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv73rqal2aqgs"]
 
 [ext_resource type="Script" path="res://objects/employee/employee.gd" id="1_oqnbl"]
-[ext_resource type="Texture2D" uid="uid://qctqwntldpcq" path="res://assets/vectors/Meeple_rect.svg" id="2_eorqj"]
+[ext_resource type="Texture2D" uid="uid://qctqwntldpcq" path="res://objects/meeple/Meeple_rect.svg" id="2_eorqj"]
 
 [node name="Employee" type="Control"]
 custom_minimum_size = Vector2(64, 128)

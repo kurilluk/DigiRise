@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p2pm33h5h4co"
-path="res://.godot/imported/MeepleCustom5.svg-ccc1df2baf811c63b276dc9db0ffe9e3.ctex"
+uid="uid://dgqypxqtnndte"
+path="res://.godot/imported/godot_icon.svg-e91b93af00f08f78f8529b432aa39a4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/vectors/MeepleCustom5.svg"
-dest_files=["res://.godot/imported/MeepleCustom5.svg-ccc1df2baf811c63b276dc9db0ffe9e3.ctex"]
+source_file="res://_misc/godot_icon.svg"
+dest_files=["res://.godot/imported/godot_icon.svg-e91b93af00f08f78f8529b432aa39a4f.ctex"]
 
 [params]
 

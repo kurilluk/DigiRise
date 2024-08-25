@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yi7txgo2r64y"
-path="res://.godot/imported/DigiRise-512.png-ca9f28aaaaa74eb8d02a6d6676e499f2.ctex"
+uid="uid://b76p82p802vtt"
+path="res://.godot/imported/MeepleCustom.svg-eb42d6613f6dff666501a009adf4f71c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DigiRise-512.png"
-dest_files=["res://.godot/imported/DigiRise-512.png-ca9f28aaaaa74eb8d02a6d6676e499f2.ctex"]
+source_file="res://assets/textures/_meeple_alt/MeepleCustom.svg"
+dest_files=["res://.godot/imported/MeepleCustom.svg-eb42d6613f6dff666501a009adf4f71c.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

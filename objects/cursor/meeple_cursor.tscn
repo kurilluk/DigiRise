@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btmg1nnp4iebk"]
 
-[ext_resource type="Script" path="res://objects/employee/meeple_cursor.gd" id="1_hcp0p"]
-[ext_resource type="Texture2D" uid="uid://b5iar82hhjv5n" path="res://assets/vectors/Meeple_stroke_drag.svg" id="2_g2kbt"]
+[ext_resource type="Script" path="res://objects/cursor/meeple_cursor.gd" id="1_78687"]
+[ext_resource type="Texture2D" uid="uid://b5iar82hhjv5n" path="res://objects/cursor/Meeple_stroke_drag.svg" id="2_5istn"]
 
 [node name="MeepleCursor" type="Control"]
 layout_mode = 3
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_hcp0p")
+script = ExtResource("1_78687")
 
 [node name="Texture" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -31,9 +31,9 @@ offset_right = 47.5
 offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_g2kbt")
+texture = ExtResource("2_5istn")
 
-[node name="Level" type="Label" parent="."]
+[node name="Level_label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

@@ -81,8 +81,10 @@ func _on_next_phase_button_pressed():
 		update_steps()
 	else:
 		#you win - your capital is
+		_capital += _profit_loss
 		%EndLabel.text = "You win:\nYour score is\n%s" % _capital
 		%EndScreen.visible = true
+		# TODO play the sound - victory!!!
 		return
 	
 	SoundManager.play_next_click(sound)
