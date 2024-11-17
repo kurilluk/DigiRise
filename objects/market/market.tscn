@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckclcfxxs1obv"]
+[gd_scene load_steps=3 format=3 uid="uid://ckclcfxxs1obv"]
 
 [ext_resource type="Script" path="res://objects/market/market.gd" id="1_k2vph"]
+[ext_resource type="PackedScene" uid="uid://qfgj17dwemc6" path="res://objects/project/project.tscn" id="2_ebvvy"]
 
 [node name="Market" type="Control"]
 layout_mode = 3
@@ -14,6 +15,7 @@ size_flags_vertical = 3
 script = ExtResource("1_k2vph")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,3 +38,15 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 2
+
+[node name="DummyProject01" parent="Offers" instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject02" parent="Offers" instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject03" parent="Offers" instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject04" parent="Offers" instance=ExtResource("2_ebvvy")]
+layout_mode = 2

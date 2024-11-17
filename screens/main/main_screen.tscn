@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ba8p40n5btqsk"]
+[gd_scene load_steps=16 format=3 uid="uid://ba8p40n5btqsk"]
 
 [ext_resource type="Script" path="res://screens/main/game_logic.gd" id="1_677oh"]
 [ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="1_765yv"]
@@ -9,11 +9,26 @@
 [ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="7_aarp8"]
 [ext_resource type="Script" path="res://objects/internal/fire_only.gd" id="9_adpjf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fek3h"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdyj0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4md2u"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdyj0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hhv6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.0666667, 0.466667, 0.588235, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w06va"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.164706, 0.490196, 0.294118, 1)
+corner_detail = 6
+anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iduvf"]
 
@@ -32,189 +47,73 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_677oh")
 
-[node name="background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2664, 0.347553, 0.37, 1)
+color = Color(0.164706, 0.196078, 0.211765, 1)
 
-[node name="MainContainer" type="VBoxContainer" parent="."]
+[node name="EmployeesMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -150.0
+offset_right = 960.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="TopPanel" type="PanelContainer" parent="MainContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/TopPanel"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/TopPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Spacer_Left" type="ColorRect" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Button" type="Button" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Left"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = 16.0
-grow_vertical = 2
-pivot_offset = Vector2(10, 0)
-text = " GAME RESET"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Steps" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "ROUND:"
-horizontal_alignment = 1
-
-[node name="Steps_value" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
-text = "1/15"
-horizontal_alignment = 1
-
-[node name="Money" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "MONEY:
-3500"
-horizontal_alignment = 1
-
-[node name="Profit_Loss" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "PROFIT/LOSS:
-3500"
-horizontal_alignment = 1
-
-[node name="Spacer_Right" type="ColorRect" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="CheckButton" type="CheckButton" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Right"]
-custom_minimum_size = Vector2(100, 32)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -94.0
-offset_top = -15.5
-offset_bottom = 15.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fek3h")
-button_pressed = true
-text = "MUSIC"
-
-[node name="HSeparator" type="HSeparator" parent="MainContainer/TopPanel/VBoxContainer"]
-visible = false
-layout_mode = 2
+grow_vertical = 0
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="CentralPanel" type="HBoxContainer" parent="MainContainer"]
+[node name="External" parent="EmployeesMenu" instance=ExtResource("7_aarp8")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
+size_flags_vertical = 8
 
-[node name="LeftPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralPanel"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="MainContainer/CentralPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/CentralPanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="External" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("7_aarp8")]
+[node name="Internal" parent="EmployeesMenu" instance=ExtResource("5_yd8vj")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_vertical = 8
 
-[node name="Education" type="PanelContainer" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Fire_only" type="PanelContainer" parent="EmployeesMenu"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4md2u")
-script = ExtResource("2_15457")
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vdyj0")
+script = ExtResource("9_adpjf")
 
-[node name="BG_Color_Top" type="ColorRect" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education"]
-unique_name_in_owner = true
+[node name="BG_Color_Top" type="ColorRect" parent="EmployeesMenu/Fire_only"]
+visible = false
 custom_minimum_size = Vector2(0, 132)
 layout_mode = 2
 size_flags_vertical = 0
 color = Color(0.301961, 0.301961, 0.301961, 1)
 
-[node name="BG_Color" type="ColorRect" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education"]
-unique_name_in_owner = true
+[node name="BG_Color" type="ColorRect" parent="EmployeesMenu/Fire_only"]
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
 color = Color(0.255659, 0.255659, 0.255659, 1)
 
-[node name="CentralPanel" type="VBoxContainer" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education"]
+[node name="CentralPanel" type="VBoxContainer" parent="EmployeesMenu/Fire_only"]
 layout_mode = 2
 
-[node name="Upskill" type="Label" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel"]
-modulate = Color(0, 0, 0, 1)
+[node name="Intern_expenses_label" type="Label" parent="EmployeesMenu/Fire_only/CentralPanel"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 1
-text = "   Training 300, UPSkill +1"
+text = "Fire"
+horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Fee_value" type="Label" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel"]
+[node name="Expenses_value" type="Label" parent="EmployeesMenu/Fire_only/CentralPanel"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -225,7 +124,7 @@ text = "PRICE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Posibilities" type="HBoxContainer" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel"]
+[node name="Employees" type="HBoxContainer" parent="EmployeesMenu/Fire_only/CentralPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -233,19 +132,105 @@ size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Employee" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
+[node name="MainMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -562.0
+offset_top = -250.0
+offset_right = 562.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Hire" parent="MainMenu/VBoxContainer" instance=ExtResource("4_fudho")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="External" parent="MainMenu/VBoxContainer" instance=ExtResource("7_aarp8")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Education" type="PanelContainer" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4md2u")
+script = ExtResource("2_15457")
+
+[node name="BG_Color_Top" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="BG_Color" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="CentralPanel" type="VBoxContainer" parent="MainMenu/VBoxContainer/Education"]
 layout_mode = 2
 
-[node name="Employee2" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
+[node name="Upskill" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "   Training 300, UPSkill +1"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Fee_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Posibilities" type="HBoxContainer" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Employee" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Employee3" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
+[node name="Employee2" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Employee4" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
+[node name="Employee3" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
 layout_mode = 2
 
-[node name="Upskill_value" type="Label" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel"]
+[node name="Employee4" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("3_2v47i")]
+layout_mode = 2
+
+[node name="Upskill_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
@@ -255,7 +240,7 @@ text = "---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Upskill_label" type="Label" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Upskill_value"]
+[node name="Upskill_label" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
@@ -271,7 +256,7 @@ text = "Expenses:"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Upskill_label2" type="Label" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer/VBoxContainer/Education/CentralPanel/Upskill_value"]
+[node name="Upskill_label2" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
 visible = false
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
@@ -288,214 +273,122 @@ text = "Upskill expenses:"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Market" parent="MainContainer/CentralPanel/VBoxContainer/HBoxContainer" instance=ExtResource("1_765yv")]
+[node name="Market" parent="MainMenu" instance=ExtResource("1_765yv")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 500)
 layout_mode = 2
+size_flags_horizontal = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="MainContainer/CentralPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RightPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="BottomPanel_middle" type="PanelContainer" parent="MainContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="Resources" type="HBoxContainer" parent="MainContainer/BottomPanel_middle"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="External" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("7_aarp8")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Hire" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("4_fudho")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Internal" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("5_yd8vj")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Fire_only" type="PanelContainer" parent="MainContainer/BottomPanel_middle/Resources"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vdyj0")
-script = ExtResource("9_adpjf")
-
-[node name="BG_Color_Top" type="ColorRect" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
-visible = false
-custom_minimum_size = Vector2(0, 132)
-layout_mode = 2
-size_flags_vertical = 0
-color = Color(0.301961, 0.301961, 0.301961, 1)
-
-[node name="BG_Color" type="ColorRect" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
-visible = false
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_vertical = 8
-color = Color(0.255659, 0.255659, 0.255659, 1)
-
-[node name="CentralPanel" type="VBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
-layout_mode = 2
-
-[node name="Intern_expenses_label" type="Label" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Fire"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Expenses_value" type="Label" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
-unique_name_in_owner = true
-visible = false
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "PRICE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="BottomPanel_side" type="PanelContainer" parent="MainContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Spacer_Left" type="ColorRect" parent="MainContainer/BottomPanel_side"]
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Spacer_Right" type="ColorRect" parent="MainContainer/BottomPanel_side"]
-visible = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="StatusMenu" type="HBoxContainer" parent="."]
+[node name="StatusBar" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.766667
-anchor_right = 1.0
-anchor_bottom = 0.766667
-offset_top = -28.0
-offset_bottom = 12.0
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -960.0
+offset_top = -20.0
+offset_right = 960.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
-metadata/_edit_use_anchors_ = true
 
-[node name="Money_container" type="PanelContainer" parent="StatusMenu"]
+[node name="Money_container" type="PanelContainer" parent="StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4hhv6")
 
-[node name="ColorRect" type="ColorRect" parent="StatusMenu/Money_container"]
+[node name="ColorRect" type="ColorRect" parent="StatusBar/Money_container"]
+visible = false
 layout_mode = 2
 color = Color(0.0666667, 0.466667, 0.588235, 1)
 
-[node name="Money" type="Label" parent="StatusMenu/Money_container"]
-custom_minimum_size = Vector2(320, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Money_container"]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Money" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "MONEY:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Money_value" type="Label" parent="StatusMenu/Money_container"]
+[node name="Money_value" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "3500"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ProfitLoss_container" type="PanelContainer" parent="StatusMenu"]
+[node name="ProfitLoss_container" type="PanelContainer" parent="StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w06va")
 
-[node name="ColorRect" type="ColorRect" parent="StatusMenu/ProfitLoss_container"]
+[node name="ColorRect" type="ColorRect" parent="StatusBar/ProfitLoss_container"]
+visible = false
 layout_mode = 2
 color = Color(0.164706, 0.490196, 0.294118, 1)
 
-[node name="Profit-Loss" type="Label" parent="StatusMenu/ProfitLoss_container"]
-custom_minimum_size = Vector2(320, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/ProfitLoss_container"]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Profit-Loss" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "PROFIT/LOSS:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Profit-Loss_value" type="Label" parent="StatusMenu/ProfitLoss_container"]
+[node name="Profit-Loss_value" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "3500"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Fired_container" type="PanelContainer" parent="StatusMenu"]
+[node name="Fired_container" type="PanelContainer" parent="StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="StatusMenu/Fired_container"]
+[node name="ColorRect" type="ColorRect" parent="StatusBar/Fired_container"]
 layout_mode = 2
 color = Color(0.588235, 0.403922, 0.0666667, 1)
 
-[node name="Fired" type="Label" parent="StatusMenu/Fired_container"]
-custom_minimum_size = Vector2(320, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Fired_container"]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Fired" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "FIRED EMPLOYEES:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Fired_value" type="Label" parent="StatusMenu/Fired_container"]
-custom_minimum_size = Vector2(320, 0)
+[node name="Fired_value" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "12"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="LeftBottom_panel" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -200.0
-offset_right = 350.0
-grow_vertical = 0
-
-[node name="Button_Next" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -613,7 +506,5 @@ grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 text = "TRY AGAIN"
 
-[connection signal="pressed" from="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Left/Button" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Right/CheckButton" to="." method="_on_music_is_pressed"]
-[connection signal="pressed" from="Button_Next" to="." method="_on_next_phase_button_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_phase_button_pressed"]
 [connection signal="pressed" from="EndScreen/Background/PanelContainer/EndLabel/Button2" to="." method="_on_reset_pressed"]

@@ -19,6 +19,7 @@ var _phase = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	offers.columns = 2
+	clear_projects_on_market()
 	generate_projects(_projects_count,_phase)
 	SignalManager.on_new_step.connect(on_next_step)
 

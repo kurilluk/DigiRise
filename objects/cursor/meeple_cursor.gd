@@ -2,6 +2,7 @@ extends Control
 
 @onready var _lvl_label = %Level_label
 @onready var _texture = %Texture
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var _lvl_num: int = -1
 var _color: Color = Color("404040")
