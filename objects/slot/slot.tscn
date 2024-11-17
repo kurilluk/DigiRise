@@ -2,40 +2,105 @@
 
 [ext_resource type="Script" path="res://objects/slot/slot.gd" id="1_uit0j"]
 [ext_resource type="Texture2D" uid="uid://qctqwntldpcq" path="res://objects/meeple/Meeple_rect.svg" id="2_320wg"]
-[ext_resource type="PackedScene" uid="uid://drj6f4uuf8sxt" path="res://objects/meeple/meeple.tscn" id="2_vspkv"]
 
-[node name="Slot" type="PanelContainer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsnkq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[node name="Slot" type="Control"]
 show_behind_parent = true
+custom_minimum_size = Vector2(64, 96)
+layout_mode = 3
+anchors_preset = 0
 offset_right = 64.0
-offset_bottom = 64.0
+offset_bottom = 96.0
 mouse_filter = 2
 script = ExtResource("1_uit0j")
 
-[node name="Layout" type="VBoxContainer" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="Meeple_slot_old" type="Control" parent="Layout"]
-visible = false
-layout_mode = 2
-
-[node name="Meeple_slot xxx" parent="Layout/Meeple_slot_old" instance=ExtResource("2_vspkv")]
-visible = false
-layout_mode = 1
-
-[node name="Min_level_label" type="Label" parent="Layout"]
+[node name="Min_level" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_top = -38.0
+offset_right = 64.0
+offset_bottom = -6.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dsnkq")
+
+[node name="Allowed_color" type="ColorRect" parent="Min_level"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Min_level_value" type="Label" parent="Min_level"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "min_lvl"
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Meeple" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 96.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Icon" type="PanelContainer" parent="Meeple"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Meeple_texture" type="TextureRect" parent="Meeple/Icon"]
+unique_name_in_owner = true
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_320wg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Level_value" type="Label" parent="Meeple/Icon"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="PanelContainer" parent="Meeple"]
+layout_mode = 2
+
+[node name="Price_value" type="Label" parent="Meeple/Price"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Layout" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 96.0
+theme_override_constants/separation = 0
+alignment = 1
+
 [node name="Meeple_slot" type="Control" parent="Layout"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -53,7 +118,6 @@ stretch_mode = 5
 
 [node name="Level_label" type="Label" parent="Layout/Meeple_slot"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 8
@@ -69,15 +133,5 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "lvl"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Price_label" type="Label" parent="Layout"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(64, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "price"
 horizontal_alignment = 1
 vertical_alignment = 1
