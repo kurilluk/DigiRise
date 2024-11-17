@@ -15,9 +15,9 @@ func expenses(value : int):
 
 @onready var internal = %Internal
 @onready var market = %Market
-@onready var money = %Money
-@onready var steps = %Steps
-@onready var profit_loss = %Profit_Loss
+@onready var money = %Money_value
+@onready var steps = %Steps_value
+@onready var profit_loss = %"Profit-Loss_value"
 
 @onready var fire_only = %Fire_only
 @onready var hire = %Hire
@@ -43,7 +43,7 @@ func check_status():
 	update_profit_loss()
 
 func update_steps():
-	steps.text = "STEP\n%s / %s" % [_step,MAX_STEPS]
+	steps.text = "%s / %s" % [_step,MAX_STEPS]
 
 #func calculate_expenses():
 	#var expanses = internal.calculate_expenses()
@@ -56,7 +56,7 @@ func update_steps():
 	#update_capital()
 
 func update_capital():
-	money.text = "MONEY\n%s" % _capital
+	money.text = str(_capital)
 	
 #TODO - extern, experts...???
 #TODO - Hire - fire separate
@@ -71,7 +71,7 @@ func update_profit_loss():
 	# expanses from education
 	#TODO education expanses
 	_profit_loss = income - expanses
-	profit_loss.text = "PROFIT/LOSS\n%s" % _profit_loss
+	profit_loss.text = str(_profit_loss)
 
 func _on_next_phase_button_pressed():
 	#SoundManager.play_sound(sound)
@@ -164,4 +164,3 @@ func _on_reset_pressed():
 	#end_screen.hide()
 	get_tree().reload_current_scene()
 	#%EndScreen.visible = false
-

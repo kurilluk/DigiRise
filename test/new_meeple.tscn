@@ -139,8 +139,7 @@ offset_left = 654.0
 offset_top = 630.0
 offset_right = 718.0
 offset_bottom = 694.0
-type = 1
-level = 8
+level = 6
 
 [node name="Meeple7" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 0
