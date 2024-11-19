@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba8p40n5btqsk"]
+[gd_scene load_steps=18 format=3 uid="uid://ba8p40n5btqsk"]
 
 [ext_resource type="Script" path="res://screens/main/game_logic.gd" id="1_677oh"]
 [ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="1_765yv"]
 [ext_resource type="Script" path="res://objects/upskill/upskill.gd" id="2_15457"]
 [ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="3_2v47i"]
+[ext_resource type="Script" path="res://objects/employee/external/external.gd" id="3_777w0"]
 [ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="4_fudho"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/footer/footer_menu.tscn" id="5_qob7v"]
 [ext_resource type="PackedScene" uid="uid://ip43o7ukforf" path="res://objects/internal/internal.tscn" id="5_yd8vj"]
 [ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="7_aarp8"]
 [ext_resource type="Script" path="res://objects/internal/fire_only.gd" id="9_adpjf"]
@@ -56,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.164706, 0.196078, 0.211765, 1)
 
-[node name="EmployeesMenu" type="HBoxContainer" parent="."]
+[node name="MeepleMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -68,43 +70,95 @@ offset_top = -150.0
 offset_right = 960.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 24
 alignment = 1
 
-[node name="External" parent="EmployeesMenu" instance=ExtResource("7_aarp8")]
+[node name="External" parent="MeepleMenu" instance=ExtResource("5_qob7v")]
 layout_mode = 2
 size_flags_vertical = 8
+NAME = "External Experts"
+TYPE = 1
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([5, 5, 10])
 
-[node name="Internal" parent="EmployeesMenu" instance=ExtResource("5_yd8vj")]
+[node name="Internal" parent="MeepleMenu" instance=ExtResource("5_qob7v")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
+NAME = "UNUTILIZED EMPLOYEES"
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([0, 1, 1, 2, 2, 3])
 
-[node name="Fire_only" type="PanelContainer" parent="EmployeesMenu"]
+[node name="External_old" parent="MeepleMenu" instance=ExtResource("7_aarp8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("3_777w0")
+
+[node name="Internal_old" parent="MeepleMenu" instance=ExtResource("5_yd8vj")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Fired" parent="MeepleMenu" instance=ExtResource("5_qob7v")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Fired"
+MEEPLE_levels = Array[int]([0, 0, 0])
+
+[node name="Fired_old" parent="MeepleMenu" instance=ExtResource("7_aarp8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Name" parent="MeepleMenu/Fired_old" index="0"]
+text = "Fired"
+
+[node name="Expert1" parent="MeepleMenu/Fired_old/Slots" index="0"]
+mouse_default_cursor_shape = 0
+min_level = 0
+allowed_type = 0
+meeple_type = -1
+
+[node name="Expert2" parent="MeepleMenu/Fired_old/Slots" index="1"]
+mouse_default_cursor_shape = 0
+allowed_type = 0
+meeple_type = -1
+
+[node name="Expert3" parent="MeepleMenu/Fired_old/Slots" index="2"]
+mouse_default_cursor_shape = 0
+allowed_type = 0
+meeple_type = -1
+
+[node name="Expert4" parent="MeepleMenu/Fired_old/Slots" index="3"]
+visible = false
+
+[node name="Fire_only" type="PanelContainer" parent="MeepleMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vdyj0")
 script = ExtResource("9_adpjf")
 
-[node name="BG_Color_Top" type="ColorRect" parent="EmployeesMenu/Fire_only"]
+[node name="BG_Color_Top" type="ColorRect" parent="MeepleMenu/Fire_only"]
 visible = false
 custom_minimum_size = Vector2(0, 132)
 layout_mode = 2
 size_flags_vertical = 0
 color = Color(0.301961, 0.301961, 0.301961, 1)
 
-[node name="BG_Color" type="ColorRect" parent="EmployeesMenu/Fire_only"]
+[node name="BG_Color" type="ColorRect" parent="MeepleMenu/Fire_only"]
 visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
 color = Color(0.255659, 0.255659, 0.255659, 1)
 
-[node name="CentralPanel" type="VBoxContainer" parent="EmployeesMenu/Fire_only"]
+[node name="CentralPanel" type="VBoxContainer" parent="MeepleMenu/Fire_only"]
 layout_mode = 2
 
-[node name="Intern_expenses_label" type="Label" parent="EmployeesMenu/Fire_only/CentralPanel"]
+[node name="Intern_expenses_label" type="Label" parent="MeepleMenu/Fire_only/CentralPanel"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 1
@@ -113,7 +167,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Expenses_value" type="Label" parent="EmployeesMenu/Fire_only/CentralPanel"]
+[node name="Expenses_value" type="Label" parent="MeepleMenu/Fire_only/CentralPanel"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -124,7 +178,7 @@ text = "PRICE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Employees" type="HBoxContainer" parent="EmployeesMenu/Fire_only/CentralPanel"]
+[node name="Employees" type="HBoxContainer" parent="MeepleMenu/Fire_only/CentralPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -391,16 +445,16 @@ vertical_alignment = 1
 [node name="NextButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -88.0
-offset_bottom = -24.0
+offset_top = -32.0
+offset_bottom = 32.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -508,3 +562,5 @@ text = "TRY AGAIN"
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_phase_button_pressed"]
 [connection signal="pressed" from="EndScreen/Background/PanelContainer/EndLabel/Button2" to="." method="_on_reset_pressed"]
+
+[editable path="MeepleMenu/Fired_old"]

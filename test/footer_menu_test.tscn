@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0mwsgnarsdny"]
+
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/footer/footer_menu.tscn" id="1_rvyh8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MeepleMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -150.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="External" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Experts"
+TYPE = 1
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([5, 5, 10])
+
+[node name="Internal" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "UNUTILIZED EMPLOYEES"
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([0, 1, 1, 2, 2, 3])
+
+[node name="Fired" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Fired"
+MEEPLE_levels = Array[int]([0, 0, 0])
+
+[node name="Test" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Test"
+TYPE = 1
+MEEPLE_levels = Array[int]([5, 5, 10])

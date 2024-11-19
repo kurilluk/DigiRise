@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 @onready var employees = %Employees
 @onready var expenses_value = %Expenses_value
@@ -14,7 +14,6 @@ func _ready():
 	SignalManager.on_project_meeple_change.connect(check_status)
 	_expanses = 0
 	initialze_employees()
-
 
 func create_employee_meeple(ln: int) -> void:
 	var new_meeple = MEEPLE.instantiate()

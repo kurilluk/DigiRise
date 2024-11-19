@@ -8,18 +8,24 @@ const MEEPLE_TEXTURE = preload("res://objects/meeple/Meeple_rect.svg")
 #@onready var lvl_label = %Level_value
 #@onready var meeple_texture = %Meeple_texture
 
-@export var type: MM.TYPES = MM.TYPES.EMPTY:
+@export var meeple_type: MM.TYPES = MM.TYPES.EMPTY:
 	set(value):
-		type = value
+		meeple_type = value
 		update_visuals()
 
-@export var level: int = 0:
+@export var meeple_level: int = 0:
 	set(value):
-		level = value
+		meeple_level = value
 		update_visuals()
 
 var _price: int = 0
 var _color: Color
+
+func set_meeple_level(level_value : int) -> void:
+	self.meeple_level = level_value
+
+func set_meeple_type(type_value : MM.TYPES):
+	self.meeple_type = type_value
 
 #func _init(level: int, slot: Slot, type: MM.TYPES):
 	#_level = level
@@ -74,15 +80,15 @@ func get_price() -> int:
 	return _price
  
 func get_level() -> int:
-	return level
+	return meeple_level
 	
 func get_type() -> MM.TYPES:
-	return type
+	return meeple_type
 
 
 ### DRAG DATA
 func _get_drag_data(_at_position):
-	if type == MM.TYPES.EMPTY:
+	if meeple_type == MM.TYPES.EMPTY:
 		return null
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_drag_preview(make_drag_preview())
@@ -90,6 +96,6 @@ func _get_drag_data(_at_position):
 	 
 func make_drag_preview() -> Control:
 	var preview = MEEPLE_CURSOR.instantiate()
-	preview.setup(level,_color) #MM.COLORS[type]
+	preview.setup(meeple_level,_color) #MM.COLORS[type]
 	return preview
 	

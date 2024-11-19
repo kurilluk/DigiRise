@@ -38,26 +38,28 @@ func _ready():
 
 func update_visuals():
 	#print("I AM IN SLOT FUNCTION!")
-	if type == MM.TYPES.EMPTY:
+	if meeple_type == MM.TYPES.EMPTY:
 		#price_label.visible = false
 		self.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	else:
 		#price_label.visible = true
 		self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	_color = MM.COLORS[type]
+	_color = MM.COLORS[meeple_type]
 
 	if meeple_texture:
 		meeple_texture.modulate = _color
 	update_text()
 
 func update_text():
-	if type == MM.TYPES.EMPTY:
+	if not lvl_label:
+		return
+	if meeple_type == MM.TYPES.EMPTY:
 		lvl_label.text = "---"
 		price_label.text = "---"
 	else:
 		if lvl_label:
-			lvl_label.text = "%s" % [level]
-		_price = MM.get_price(level)
+			lvl_label.text = "%s" % [meeple_level]
+		_price = MM.get_price(meeple_level)
 		if price_label:
 			price_label.text = "%s" % [_price]
 
@@ -69,6 +71,9 @@ func update_slot_visuals():
 		else:
 			min_level_label.text = "---"
 			#min_level_label.visible = false
+
+func get_price():
+	return _price
 
 func set_min_level_color():
 	if allowed_color:
@@ -133,9 +138,9 @@ func _drop_data(_pos, data):
 	if not new_meeple:
 		return
 		
-	self.type = new_meeple.get_type()
-	self.level = new_meeple.get_level() 
-	new_meeple.type = MM.TYPES.EMPTY
+	self.meeple_type = new_meeple.get_type()
+	self.meeple_level = new_meeple.get_level() 
+	new_meeple.meeple_type = MM.TYPES.EMPTY
 
 #func _drop_data(_pos, data):
 	## Step 1: Save the global position of the node before reparenting
@@ -178,7 +183,10 @@ func _drop_data(_pos, data):
 	#texture = data.texture
 	##if data != self:
 	#data.texture = temp
-	
+
+func empty_data():
+	meeple_type = MM.TYPES.EMPTY
+
 #func empty_data():
 	#meeple.texture = null
 	#_lvl_label_number = -1

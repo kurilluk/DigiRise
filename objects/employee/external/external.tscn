@@ -1,58 +1,57 @@
 [gd_scene load_steps=3 format=3 uid="uid://goh2wnysibo4"]
 
-[ext_resource type="Script" path="res://objects/employee/external/external.gd" id="1_u5di6"]
+[ext_resource type="Script" path="res://objects/employee/fired.gd" id="1_s20k1"]
+[ext_resource type="PackedScene" uid="uid://db25dbsqugv5e" path="res://objects/slot/slot.tscn" id="2_6y0us"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4md2u"]
-
-[node name="External" type="PanelContainer"]
-offset_right = 45.0
+[node name="Experts" type="VBoxContainer"]
+offset_right = 149.0
 offset_bottom = 164.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4md2u")
-script = ExtResource("1_u5di6")
+theme_override_constants/separation = 0
+script = ExtResource("1_s20k1")
 
-[node name="BG_Color_Top" type="ColorRect" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 132)
-layout_mode = 2
-size_flags_vertical = 0
-color = Color(0.301961, 0.301961, 0.301961, 1)
-
-[node name="BG_Color" type="ColorRect" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_vertical = 8
-color = Color(0.255659, 0.255659, 0.255659, 1)
-
-[node name="CentralPanel" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Extern_label" type="Label" parent="CentralPanel"]
+[node name="Name" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.144531, 0.683469, 0.852459, 1)
 text = "External experts"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Expenses_value" type="Label" parent="CentralPanel"]
-unique_name_in_owner = true
-visible = false
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "PRICE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Employees" type="HBoxContainer" parent="CentralPanel"]
+[node name="Slots" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 alignment = 1
+
+[node name="Expert1" parent="Slots" instance=ExtResource("2_6y0us")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+allowed_type = 1
+meeple_type = 1
+meeple_level = 5
+
+[node name="Expert2" parent="Slots" instance=ExtResource("2_6y0us")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+allowed_type = 1
+meeple_type = 1
+meeple_level = 5
+
+[node name="Expert3" parent="Slots" instance=ExtResource("2_6y0us")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+allowed_type = 1
+meeple_type = 1
+meeple_level = 10
+
+[node name="Expert4" parent="Slots" instance=ExtResource("2_6y0us")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+min_level = 5
+allowed_type = 1
+meeple_type = 1
+meeple_level = 10

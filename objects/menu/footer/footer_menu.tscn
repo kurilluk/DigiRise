@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://ylhyi4m5tx7d"]
+
+[ext_resource type="Script" path="res://objects/menu/footer/footer_menu.gd" id="1_203pd"]
+
+[node name="FooterMenu" type="VBoxContainer"]
+offset_right = 64.0
+offset_bottom = 158.0
+theme_override_constants/separation = 0
+script = ExtResource("1_203pd")
+NAME = "Name"
+TYPE = 0
+EMPTY_SLOTS = true
+MEEPLE_levels = Array[int]([0])
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.588235, 0.494118, 0.0666667, 1)
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Slots" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+alignment = 1

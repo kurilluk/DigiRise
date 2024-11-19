@@ -4,7 +4,7 @@ extends Control
 #const MEEPLE = preload("res://objects/employee/employee.tscn")
 const SLOT = preload("res://objects/slot/slot.tscn")
 
-var MEEPLE_levels: Array[int] = [5,5,10,10]
+var MEEPLE_levels: Array[int] = [-1,-1,-1]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,11 +15,11 @@ func _ready():
 func create_meeple(level_value: int) -> void:
 	var new_slot = SLOT.instantiate()
 	slots.add_child(new_slot)
-	new_slot.allowed_type = MM.TYPES.EXTERNAL
+	new_slot.allowed_type = MM.TYPES.INTERNAL
 	
-	new_slot.meeple_type = MM.TYPES.EXTERNAL
+	new_slot.meeple_type = MM.TYPES.EMPTY
 	#new_slot.set_meeple_level(level_value)
-	new_slot.meeple_level = level_value
+	#new_slot.meeple_level = level_value
 
 
 	#new_slot.load_texture()
@@ -40,5 +40,9 @@ func clear_slots():
 	for slot in slots.get_children():
 		slot.queue_free()
 
+func fire_employees():
+	for slot in slots.get_children():
+		slot.empty_data()
+		
 #func on_next_step():
 	#pass

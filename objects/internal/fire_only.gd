@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 @onready var employees = %Employees
 const MEEPLE = preload("res://objects/employee/employee.tscn")

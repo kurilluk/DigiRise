@@ -37,8 +37,8 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 min_level = 1
 allowed_type = 0
-type = 0
-level = 2
+meeple_type = 0
+meeple_level = 3
 
 [node name="Slot3" parent="HBoxContainer" instance=ExtResource("1_clb0c")]
 layout_mode = 2
@@ -49,8 +49,8 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 min_level = 5
 allowed_type = 1
-type = 1
-level = 5
+meeple_type = 1
+meeple_level = 5
 
 [node name="Slot5" parent="HBoxContainer" instance=ExtResource("1_clb0c")]
 layout_mode = 2
