@@ -1,84 +1,128 @@
-[gd_scene load_steps=3 format=3 uid="uid://qfgj17dwemc6"]
+[gd_scene load_steps=8 format=3 uid="uid://qfgj17dwemc6"]
 
 [ext_resource type="Script" path="res://objects/project/project.gd" id="1_te1oq"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="2_i23gs"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4md2u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhq67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mp0e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfcfp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfru3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0epc"]
 
 [node name="Project" type="PanelContainer"]
-custom_minimum_size = Vector2(320, 0)
-offset_right = 45.0
-offset_bottom = 164.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4md2u")
+custom_minimum_size = Vector2(300, 0)
+offset_right = 274.0
+offset_bottom = 166.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nhq67")
 script = ExtResource("1_te1oq")
-
-[node name="BG_Color_Top" type="ColorRect" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 132)
-layout_mode = 2
-size_flags_vertical = 0
-color = Color(0.301961, 0.301961, 0.301961, 1)
 
 [node name="BG_Color" type="ColorRect" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 178)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 10
 color = Color(0.255659, 0.255659, 0.255659, 1)
 
-[node name="CentralPanel" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5mp0e")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="Requirements" parent="VBoxContainer/ColorRect/MarginContainer" instance=ExtResource("2_i23gs")]
+unique_name_in_owner = true
+layout_mode = 2
+VISIBLE_NAME = false
+TYPE = -1
+MIN_LEVEL = true
+MEEPLE_levels = Array[int]([0, 0, 0, 0])
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tfcfp")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Fee_value" type="Label" parent="CentralPanel"]
-unique_name_in_owner = true
-modulate = Color(0, 0, 0, 1)
+[node name="Income_label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-size_flags_vertical = 1
-text = "PRICE"
-horizontal_alignment = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "INCOME:"
 vertical_alignment = 1
 
-[node name="ProjectFee_label" type="Label" parent="CentralPanel/Fee_value"]
-modulate = Color(0, 0, 0, 1)
+[node name="Income_value" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-offset_left = 12.0
-offset_right = 172.0
-offset_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "---"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CentralPanel" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/MarginContainer/CentralPanel"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bfru3")
+
+[node name="BG_Color_Top" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_h0epc")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BG_Color_Top"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/BG_Color_Top/MarginContainer"]
+layout_mode = 2
+
+[node name="ProjectFee_label" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "project fee: "
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Project Price:"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Requirements" type="HBoxContainer" parent="CentralPanel"]
+[node name="Fee_value" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="Income_value" type="Label" parent="CentralPanel"]
-unique_name_in_owner = true
-modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 text = "---"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Income_label" type="Label" parent="CentralPanel/Income_value"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_right = -148.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-text = "INCOME:"
+horizontal_alignment = 2
 vertical_alignment = 1

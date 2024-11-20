@@ -84,5 +84,21 @@ func clear_slots():
 		for slot in slots.get_children():
 			slot.queue_free()
 
+func is_full() -> bool:
+	var m_count = 0
+	for slot in slots.get_children():
+		if slot is Slot and !slot.is_empty():
+			m_count += 1
+	#print("Req:%s / Ins:%s" % [slots.get_child_count(), m_count])
+	return slots.get_child_count() == m_count
+
+func get_prices_sum() -> int:
+	var value = 0
+	for slot in slots.get_children():
+		if slot is Slot and !slot.is_queued_for_deletion(): # TODO is active? avoid empty, also external
+			var price = slot.get_price()
+			if price > 0:
+				value += price
+	return value
 #func on_next_step():
 	#pass

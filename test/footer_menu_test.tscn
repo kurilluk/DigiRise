@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0mwsgnarsdny"]
+[gd_scene load_steps=13 format=3 uid="uid://d0mwsgnarsdny"]
 
-[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/footer/footer_menu.tscn" id="1_rvyh8"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_rvyh8"]
+[ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="2_1c7ie"]
+[ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="3_2lweh"]
+[ext_resource type="Script" path="res://objects/upskill/upskill.gd" id="4_h3oh6"]
+[ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="5_ke8wq"]
+[ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="6_4oh0f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb23p"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.0666667, 0.466667, 0.588235, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf7si"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.164706, 0.490196, 0.294118, 1)
+corner_detail = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8e5a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8hvn"]
+bg_color = Color(0.164706, 0.490196, 0.294118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnnoe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3xtf"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,6 +40,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.159863, 0.158385, 0.20318, 1)
 
 [node name="MeepleMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -53,3 +93,322 @@ size_flags_vertical = 8
 NAME = "Test"
 TYPE = 1
 MEEPLE_levels = Array[int]([5, 5, 10])
+
+[node name="StatusBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -960.0
+offset_top = -20.0
+offset_right = 960.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Money_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lb23p")
+
+[node name="ColorRect" type="ColorRect" parent="StatusBar/Money_container"]
+visible = false
+layout_mode = 2
+color = Color(0.0666667, 0.466667, 0.588235, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Money_container"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MONEY:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money_value" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "3500"
+vertical_alignment = 1
+
+[node name="ProfitLoss_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cf7si")
+
+[node name="ColorRect" type="ColorRect" parent="StatusBar/ProfitLoss_container"]
+visible = false
+layout_mode = 2
+color = Color(0.164706, 0.490196, 0.294118, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/ProfitLoss_container"]
+layout_mode = 2
+
+[node name="Profit-Loss" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PROFIT/LOSS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Profit-Loss_value" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "3500"
+vertical_alignment = 1
+
+[node name="Fired_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="StatusBar/Fired_container"]
+layout_mode = 2
+color = Color(0.588235, 0.403922, 0.0666667, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Fired_container"]
+layout_mode = 2
+
+[node name="Fired" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "FIRED EMPLOYEES:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fired_value" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "12"
+vertical_alignment = 1
+
+[node name="Rounds" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Steps" type="Label" parent="Rounds"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ROUND:"
+horizontal_alignment = 1
+
+[node name="Steps_value" type="Label" parent="Rounds"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "1/15"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 100.0
+offset_right = 135.0
+offset_bottom = 164.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5708
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x8e5a")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q8hvn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hnnoe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_q8hvn")
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "D O N E
+"
+icon_alignment = 1
+
+[node name="MainMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -562.0
+offset_top = -250.0
+offset_right = 562.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Hire" parent="MainMenu/VBoxContainer" instance=ExtResource("2_1c7ie")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="External" parent="MainMenu/VBoxContainer" instance=ExtResource("3_2lweh")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Education" type="PanelContainer" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p3xtf")
+script = ExtResource("4_h3oh6")
+
+[node name="BG_Color_Top" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="BG_Color" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="CentralPanel" type="VBoxContainer" parent="MainMenu/VBoxContainer/Education"]
+layout_mode = 2
+
+[node name="Upskill" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "   Training 300, UPSkill +1"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Fee_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Posibilities" type="HBoxContainer" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Employee" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+layout_mode = 2
+
+[node name="Employee2" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+layout_mode = 2
+
+[node name="Employee3" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+layout_mode = 2
+
+[node name="Employee4" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+layout_mode = 2
+
+[node name="Upskill_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 3
+text = "---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upskill_label" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "Expenses:"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Upskill_label2" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "Upskill expenses:"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Market" parent="MainMenu" instance=ExtResource("6_4oh0f")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+size_flags_horizontal = 1

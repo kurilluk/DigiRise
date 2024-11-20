@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="3_2v47i"]
 [ext_resource type="Script" path="res://objects/employee/external/external.gd" id="3_777w0"]
 [ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="4_fudho"]
-[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/footer/footer_menu.tscn" id="5_qob7v"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="5_qob7v"]
 [ext_resource type="PackedScene" uid="uid://ip43o7ukforf" path="res://objects/internal/internal.tscn" id="5_yd8vj"]
 [ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="7_aarp8"]
 [ext_resource type="Script" path="res://objects/internal/fire_only.gd" id="9_adpjf"]

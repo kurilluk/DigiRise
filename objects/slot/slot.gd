@@ -72,8 +72,9 @@ func update_slot_visuals():
 			min_level_label.text = "---"
 			#min_level_label.visible = false
 
-func get_price():
-	return _price
+
+func is_empty():
+	return true if meeple_type == MM.TYPES.EMPTY else false
 
 func set_min_level_color():
 	if allowed_color:
@@ -138,9 +139,13 @@ func _drop_data(_pos, data):
 	if not new_meeple:
 		return
 		
+	SoundManager.play_drop_click(sound)
 	self.meeple_type = new_meeple.get_type()
 	self.meeple_level = new_meeple.get_level() 
-	new_meeple.meeple_type = MM.TYPES.EMPTY
+	#new_meeple.meeple_type = MM.TYPES.EMPTY
+	new_meeple.empty_slot()
+	
+	SignalManager.on_project_meeple_change.emit()
 
 #func _drop_data(_pos, data):
 	## Step 1: Save the global position of the node before reparenting
@@ -184,8 +189,10 @@ func _drop_data(_pos, data):
 	##if data != self:
 	#data.texture = temp
 
-func empty_data():
+func empty_slot():
 	meeple_type = MM.TYPES.EMPTY
+	meeple_level = -1
+	_price = 0
 
 #func empty_data():
 	#meeple.texture = null

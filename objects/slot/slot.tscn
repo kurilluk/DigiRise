@@ -81,3 +81,5 @@ size_flags_horizontal = 4
 text = "---"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]

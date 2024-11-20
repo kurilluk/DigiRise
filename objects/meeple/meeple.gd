@@ -3,6 +3,7 @@ class_name Meeple extends Control
 
 const MEEPLE_CURSOR =  preload("res://objects/cursor/meeple_cursor.tscn")
 const MEEPLE_TEXTURE = preload("res://objects/meeple/Meeple_rect.svg")
+@onready var sound: AudioStreamPlayer = $Sound
 
 #@onready var price_label = %Price_value
 #@onready var lvl_label = %Level_value
@@ -85,11 +86,14 @@ func get_level() -> int:
 func get_type() -> MM.TYPES:
 	return meeple_type
 
+func is_eployee() -> bool:
+	return true if meeple_type == MM.TYPES.INTERNAL else false
 
 ### DRAG DATA
 func _get_drag_data(_at_position):
 	if meeple_type == MM.TYPES.EMPTY:
 		return null
+	SoundManager.play_drag_click(sound)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_drag_preview(make_drag_preview())
 	return self
