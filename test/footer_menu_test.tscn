@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.159863, 0.158385, 0.20318, 1)
+color = Color(0.128619, 0.127344, 0.165811, 1)
 
 [node name="MeepleMenu" type="HBoxContainer" parent="."]
 layout_mode = 1

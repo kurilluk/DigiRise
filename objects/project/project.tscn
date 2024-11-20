@@ -5,13 +5,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhq67"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mp0e"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0epc"]
+bg_color = Color(0.469297, 0.469297, 0.469296, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_056tt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfcfp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfru3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0epc"]
 
 [node name="Project" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -22,25 +23,63 @@ script = ExtResource("1_te1oq")
 
 [node name="BG_Color" type="ColorRect" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 178)
+modulate = Color(0.573792, 0.573792, 0.573792, 1)
+custom_minimum_size = Vector2(0, 134)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
 color = Color(0.255659, 0.255659, 0.255659, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="BG_Color_Top" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_h0epc")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BG_Color_Top"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 28
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/BG_Color_Top/MarginContainer"]
+layout_mode = 2
+
+[node name="ProjectFee_label" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Project Price:"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Fee_value" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 0
+text = "---"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="ColorRect" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_5mp0e")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_056tt")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = -30
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_bottom = 12
 
 [node name="Requirements" parent="VBoxContainer/ColorRect/MarginContainer" instance=ExtResource("2_i23gs")]
 unique_name_in_owner = true
@@ -91,38 +130,3 @@ visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_bfru3")
-
-[node name="BG_Color_Top" type="PanelContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_h0epc")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BG_Color_Top"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_right = 12
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/BG_Color_Top/MarginContainer"]
-layout_mode = 2
-
-[node name="ProjectFee_label" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Project Price:"
-vertical_alignment = 1
-uppercase = true
-
-[node name="Fee_value" type="Label" parent="VBoxContainer/BG_Color_Top/MarginContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
-text = "---"
-horizontal_alignment = 2
-vertical_alignment = 1
