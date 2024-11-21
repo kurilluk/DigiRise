@@ -1,6 +1,6 @@
 class_name Project extends Control
 
-@onready var background = %BG_Color
+@onready var background = %HeadBackground
 @onready var slots = %Requirements
 @onready var price = %Fee_value
 @onready var income_value = %Income_value
@@ -36,12 +36,12 @@ func update_income():
 		income_value.text = "---"
 
 func change_color():  #TODO add colors to manager!
-	if _income < 0 and _is_done:
-		background.color = Color("966711") # negative - red/orange
+	if _income <= 0 and _is_done:
+		background.color = MM.COLORS[MM.STATUS.LOSS] #Color("966711") # negative - red/orange
 	elif _income > 0 and _is_done:
-		background.color = Color("2a7d4b")  # positive - green or 966711
+		background.color = MM.COLORS[MM.STATUS.PROFIT] #Color("2a7d4b")  # positive - green or 966711
 	else:
-		background.color = Color("4d4d4d") # neutral gray color
+		background.color = MM.COLORS[MM.STATUS.NEUTRAL] #Color("4d4d4d") # neutral gray color
 
 func set_requirements(req_levels: Array[int]):
 	slots.MEEPLE_levels = req_levels

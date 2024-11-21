@@ -54,8 +54,8 @@ func update_text():
 	if not lvl_label:
 		return
 	if meeple_type == MM.TYPES.EMPTY:
-		lvl_label.text = "---"
-		price_label.text = "---"
+		lvl_label.text = ""
+		price_label.text = ""
 	else:
 		if lvl_label:
 			lvl_label.text = "%s" % [meeple_level]
@@ -69,7 +69,7 @@ func update_slot_visuals():
 			#min_level_label.visible = true
 			min_level_label.text = str(min_level)
 		else:
-			min_level_label.text = "---"
+			min_level_label.text = ""
 			#min_level_label.visible = false
 
 

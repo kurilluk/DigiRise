@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0mwsgnarsdny"]
+[gd_scene load_steps=12 format=3 uid="uid://d0mwsgnarsdny"]
 
 [ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_rvyh8"]
 [ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="2_1c7ie"]
-[ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="3_2lweh"]
 [ext_resource type="Script" path="res://objects/upskill/upskill.gd" id="4_h3oh6"]
 [ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="5_ke8wq"]
 [ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="6_4oh0f"]
@@ -48,7 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.128619, 0.127344, 0.165811, 1)
+color = Color(0.129412, 0.12549, 0.164706, 1)
 
 [node name="MeepleMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -87,7 +86,16 @@ size_flags_vertical = 8
 NAME = "Fired"
 MEEPLE_levels = Array[int]([0, 0, 0])
 
+[node name="Hire" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Hire"
+TYPE = 2
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([2, 3, 3])
+
 [node name="Test" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 NAME = "Test"
@@ -95,6 +103,7 @@ TYPE = 1
 MEEPLE_levels = Array[int]([5, 5, 10])
 
 [node name="StatusBar" type="HBoxContainer" parent="."]
+modulate = Color(0.615829, 0.615829, 0.615829, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -279,27 +288,23 @@ offset_right = 562.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+[node name="VBoxContainer" type="GridContainer" parent="MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+columns = 2
 
-[node name="Hire" parent="MainMenu/VBoxContainer" instance=ExtResource("2_1c7ie")]
+[node name="Hire_old" parent="MainMenu/VBoxContainer" instance=ExtResource("2_1c7ie")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="External" parent="MainMenu/VBoxContainer" instance=ExtResource("3_2lweh")]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
 [node name="Education" type="PanelContainer" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -406,6 +411,11 @@ size_flags_vertical = 3
 text = "Upskill expenses:"
 vertical_alignment = 1
 uppercase = true
+
+[node name="VSeparator" type="VSeparator" parent="MainMenu"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="Market" parent="MainMenu" instance=ExtResource("6_4oh0f")]
 unique_name_in_owner = true
