@@ -503,7 +503,7 @@ theme_override_font_sizes/font_size = 28
 text = "1/15"
 horizontal_alignment = 1
 
-[node name="Sound" type="AudioStreamPlayer" parent="."]
+[node name="Main_sound" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
 
 [node name="EndScreen" type="Control" parent="."]

@@ -1,7 +1,7 @@
 class_name Project extends Control
 
 @onready var background = %HeadBackground
-@onready var slots = %Requirements
+@onready var slot_menu = %Requirements
 @onready var price = %Fee_value
 @onready var income_value = %Income_value
 
@@ -17,13 +17,13 @@ func _ready():
 	SignalManager.on_project_meeple_change.connect(check_project_status)
 
 func check_project_status():
-	_is_done = slots.is_full()
+	_is_done = slot_menu.is_full()
 	update_income()
 	change_color()
 	SignalManager.on_project_change.emit()
 
 func update_income():
-	var expanses = slots.get_prices_sum() #calculate_real_expanses()
+	var expanses = slot_menu.get_prices_sum() #calculate_real_expanses()
 	#print(expanses)
 	if _is_done:
 		_income = _price - expanses
@@ -36,15 +36,15 @@ func update_income():
 		income_value.text = "---"
 
 func change_color():  #TODO add colors to manager!
-	if _income <= 0 and _is_done:
+	if _income < 0 and _is_done:
 		background.color = MM.COLORS[MM.STATUS.LOSS] #Color("966711") # negative - red/orange
-	elif _income > 0 and _is_done:
+	elif _income >= 0 and _is_done:
 		background.color = MM.COLORS[MM.STATUS.PROFIT] #Color("2a7d4b")  # positive - green or 966711
 	else:
 		background.color = MM.COLORS[MM.STATUS.NEUTRAL] #Color("4d4d4d") # neutral gray color
 
 func set_requirements(req_levels: Array[int]):
-	slots.MEEPLE_levels = req_levels
+	slot_menu.MEEPLE_levels = req_levels
 	#generate_slots(req_levels)
 	set_project_price(calculate_project_price(req_levels))
 
@@ -78,13 +78,14 @@ func calculate_expected_expanses(req_levels: Array[int]) -> int:
 	#return value
 	
 func get_employees() -> Array[int]:
-	var list: Array[int]
-	for slot in slots.get_children():
-		if slot is Slot and !slot.is_queued_for_deletion(): # TODO is not external
-			var level = slot.get_level()
-			if slot.is_eployee() and level >= 0:
-				list.append(level)
-	return list
+	return slot_menu.get_employees()
+	#var list: Array[int]
+	#for slot in slots.get_children():
+		#if slot is Slot and slot.get_meeple_type() != MM.TYPES.EXTERNAL and not slot.is_queued_for_deletion():
+			#var level = slot.get_meeple_level()
+			#if slot.is_eployee() and level >= 0: # double check if is not external?
+				#list.append(level)
+	#return list
 	
 func set_project_price(value: int):
 	_price = value

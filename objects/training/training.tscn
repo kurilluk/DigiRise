@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://qfgj17dwemc6"]
+[gd_scene load_steps=6 format=3 uid="uid://d1amnq6bhsbss"]
 
-[ext_resource type="Script" path="res://objects/project/project.gd" id="1_te1oq"]
-[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="2_i23gs"]
+[ext_resource type="Script" path="res://objects/training/training.gd" id="1_ycc02"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="2_7f1jf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhq67"]
 
@@ -9,12 +9,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_056tt"]
 
-[node name="Project" type="PanelContainer"]
+[node name="Training" type="PanelContainer"]
 custom_minimum_size = Vector2(324, 0)
 offset_right = 274.0
 offset_bottom = 166.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_nhq67")
-script = ExtResource("1_te1oq")
+script = ExtResource("1_ycc02")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -41,24 +41,24 @@ theme_override_constants/margin_bottom = 28
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HEAD/MarginContainer"]
 layout_mode = 2
 
-[node name="ProjectFee_label" type="Label" parent="VBoxContainer/HEAD/MarginContainer/HBoxContainer2"]
+[node name="Training_label" type="Label" parent="VBoxContainer/HEAD/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.701961, 0.584314, 0.180392, 1)
 theme_override_font_sizes/font_size = 18
-text = "Project Price:"
+text = "Training:"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Fee_value" type="Label" parent="VBoxContainer/HEAD/MarginContainer/HBoxContainer2"]
+[node name="Upskilling_value" type="Label" parent="VBoxContainer/HEAD/MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "---"
+text = " +1"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -83,28 +83,40 @@ theme_override_constants/margin_bottom = 6
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Requirements" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer" instance=ExtResource("2_i23gs")]
+[node name="DuoSlots" type="HBoxContainer" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+
+[node name="Trainer" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/DuoSlots" instance=ExtResource("2_7f1jf")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 VISIBLE_NAME = false
-TYPE = -2
-MIN_LEVEL = true
-MEEPLE_levels = Array[int]([0, 0, 0, 0])
+TYPE = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer"]
+[node name="Students" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/DuoSlots" instance=ExtResource("2_7f1jf")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+VISIBLE_NAME = false
+TYPE = -1
+MEEPLE_levels = Array[int]([0, 0, 0])
+
+[node name="Expenses" type="HBoxContainer" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Income_label" type="Label" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Expenses_label" type="Label" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/Expenses"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-text = "INCOME:"
+text = "EXPENSES:"
 vertical_alignment = 1
 
-[node name="Income_value" type="Label" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Expenses_value" type="Label" parent="VBoxContainer/MENU/MarginContainer/VBoxContainer/Expenses"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

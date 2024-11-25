@@ -2,8 +2,11 @@ class_name Market
 extends Control
 
 const PROJECT = preload("res://objects/project/project.tscn")
+
 @onready var offers = %Offers
+
 const MAX_LEVEL = 10
+
 const PROJECT_TYPES = [
 	[2,1,0],
 	[2,0],
@@ -61,9 +64,11 @@ func on_next_step():
 	generate_projects(_projects_count, _phase)
 	
 func calculate_income() -> int:
+	if not offers:
+		return -1
 	var income = 0
 	for project in offers.get_children():
-		if project is Project && !project.is_queued_for_deletion():
+		if project is Project and not project.is_queued_for_deletion():
 			income += project._income
 			#if project._is_done:
 				#income += project._price

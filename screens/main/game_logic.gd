@@ -1,104 +1,56 @@
 extends Control
 
-var _capital : int
-var capital: int:
-	get:
-		return _capital
-		
-func income(value: int ):
-	_capital += value
-	
-func expenses(value : int):
-	_capital -= value
-	
-@onready var sound = $Sound
+@onready var screen_sound = $Screen_sound
 
-@onready var internal = %Internal
-@onready var market = %Market
-@onready var money = %Money_value
-@onready var steps = %Steps_value
-@onready var profit_loss = %"Profit-Loss_value"
+@onready var status_bar: Control = %StatusBar
+@onready var rounds_bar: Control = %RoundsBar
 
-@onready var fire_only = %Fire_only
-@onready var hire = %Hire
 @onready var external = %External
+@onready var hire = %Hire
+@onready var internal = %Internal
+@onready var fire_only = %Fire_only
+@onready var market = %Market
+@onready var training: Training = %Training
 
-const  MAX_STEPS: int = 15
-var _step: int
-
-var _project_fees
-var _expenses
-var _profit_loss: int 
 
 func _ready():
-	SignalManager.on_project_change.connect(check_status)
-	_capital = 1500
-	_step = 1
-	update_capital()
-	update_steps()
-	update_profit_loss()
+	status_bar.set_initial_money()
+	status_bar.update_profit_loss()
+	rounds_bar.reset_round_counter()
 	%EndScreen.visible = false
 
-func check_status():
-	update_profit_loss()
-
-func update_steps():
-	steps.text = "%s / %s" % [_step,MAX_STEPS]
-
-#func calculate_expenses():
-	#var expanses = internal.calculate_expenses()
-	#_capital -= expanses
-	#update_capital()
-	#
-#func calculate_income():
-	#var income = market.calculate_income()
-	#_capital += income
-	#update_capital()
-
-func update_capital():
-	money.text = str(_capital)
-	
-#TODO - extern, experts...???
-#TODO - Hire - fire separate
-#TODO - education on left panel
-
-func update_profit_loss():
-	# income from projects
-	var income = market.calculate_income()
-	# expanses from unutilized emp
-	var expanses = internal.calculate_expenses()
-	expanses -= %Education._income
-	# expanses from education
-	#TODO education expanses
-	_profit_loss = income - expanses
-	profit_loss.text = str(_profit_loss)
-
 func _on_next_phase_button_pressed():
-	#SoundManager.play_sound(sound)
+	# TODO - next round
+	#-> disable next round button
+	#-> score round / money + profit/loss - prepocitanie penazi (odpocet-pripocet po jednom), 
+	#-> upskill meeples -> popup ulskilled value, HIDE midle_main_menu 
+	#-> move meeples to init slots - remove old slots 1 by 1, add slots with meeple 1 by 1
+	#-> start round 1+ (screen) 
+	#-> show main_menu with projects
+	#-> enable next round button
+	upskill_meeples()
+	score_round()
+	reset_board()
+
+func upskill_meeples():
+	pass
+	
+func score_round():
+	var money = status_bar.score_round()
+	SoundManager.play_next_click(screen_sound)	
+	
 	# update levelu
-	if _step != MAX_STEPS:
-		_step += 1
-		update_steps()
-	else:
-		#you win - your capital is
-		_capital += _profit_loss
-		%EndLabel.text = "You win:\nYour score is\n%s" % _capital
+	var last_round_end = rounds_bar.set_next_round()
+	if last_round_end: #_step != MM.ROUNDS:
+		%EndLabel.text = "You win:\nYour score is\n%s" % money
 		%EndScreen.visible = true
 		# TODO play the sound - victory!!!
 		return
 	
-	SoundManager.play_next_click(sound)
-	# 1st phase: capital -> income/expanses
-		# vypocitaj naklad z nealokovanych zamestnancov (a pridaj ich do noveho zoznamu)
-		# vypocitaj naklad z education
-		# vyhodnot kazdy projekt - income/expanses (moznost simulacie cash-flow)
-		# GROSS MARGIN - EDUCATION / NEVYUZITY POTENCIAL-INTERNAL = PROFIT/LOSS sumarization
-	_capital += _profit_loss
-	update_capital()
-	
-	if _capital < 0:
+	if money < 0:
 		%EndLabel.text = "Game Over:\nYour capital is negative.\nBetter luck next time!"
 		%EndScreen.visible = true
+		# TODO play the sound - lose!!!
 		#print("THE END - zero capital!")
 	
 	# 2nd phase: upskill -> project, education, and create intern emp. list 
@@ -113,48 +65,51 @@ func _on_next_phase_button_pressed():
 		# vytvor novy zoznam intern - pridaj do neho nealokovanych zamestnancov, upskillovanych projektovych zam. a education
 
 	# usporiadaj novy zoznam (reversed) a v novom kole z neho vytvor - ruku - novy internal emp. panel
-	reset_board()
+	#reset_board()
 
 func reset_board():
 	# build list of used employees
 	var list_of_employees:Array[int]
 	list_of_employees.append_array(market.get_employees())
 	list_of_employees.append_array(internal.get_employees())
-	list_of_employees.append_array(%Education.get_employees())
+	list_of_employees.append_array(training.get_employees())
+	#list_of_employees.append_array(%Education.get_employees())
 	list_of_employees.sort()
 	#list_of_employees.reverse()
 
 	# remove fired emp.
-	fire_only.fire_employees()
-	# reset hiring offer?
-	hire.clear_intern()
-	hire.setup_grid()
-	# reset experts
-	#external.clear_intern()
-	#external.setup_grid()
+	#fire_only.fire_employees()
 	
-	%Education.clear_students()
-	%Education.update_income()
+	# reset hiring offer?
+	#hire.clear_intern()
+	#hire.setup_grid()
+	
+	# reset experts
+	external.clear_slots()  #clear_intern()
+	external.setup_grid()
+	
+	training.reset_menu()
+	training.update_expanses()
 	
 	internal.clear_employees()
 	internal.generate_employees(list_of_employees) #TODO list of used employees
 	#reset market offer
 	SignalManager.on_new_step.emit()
-	update_profit_loss()
+	status_bar.update_profit_loss()
 	
 
-### DROP DATA
-func _can_drop_data(_pos, data):
-	return true
- 
-func _drop_data(_pos, data):
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	SoundManager.play_drop_click(sound)
-	#if meeple.texture == null: # no Meeple
+#### DROP DATA
+#func _can_drop_data(_pos, data):
+	#return true
+ #
+#func _drop_data(_pos, data):
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#SoundManager.play_drop_click(sound)
+	##if meeple.texture == null: # no Meeple
 
 var _nute_music = true
 func _on_music_is_pressed():
-	SoundManager.play_button_click(sound)
+	SoundManager.play_button_click(screen_sound)
 	AudioServer.set_bus_mute(2,_nute_music)
 	_nute_music = !_nute_music
 
@@ -164,3 +119,7 @@ func _on_reset_pressed():
 	#end_screen.hide()
 	get_tree().reload_current_scene()
 	#%EndScreen.visible = false
+
+
+func _on_next_button_pressed() -> void:
+	_on_next_phase_button_pressed()

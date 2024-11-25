@@ -59,7 +59,7 @@ func update_text():
 	else:
 		if lvl_label:
 			lvl_label.text = "%s" % [meeple_level]
-		_price = MM.get_price(meeple_level)
+		_price = MM.get_price(meeple_level, meeple_type == MM.TYPES.EXTERNAL)
 		if price_label:
 			price_label.text = "%s" % [_price]
 
@@ -132,16 +132,16 @@ func _can_drop_data(_pos, data) -> bool:
 
 func can_place_meeple(meeple: Meeple):
 	#print(str(meeple.get_level()) + " meeple level vs slot level " + str(min_level))
-	return self.get_type() == MM.TYPES.EMPTY and meeple.get_level() >= min_level and (allowed_type == MM.TYPES.EMPTY or meeple.get_type() == allowed_type) #in allowed_types
+	return self.get_meeple_type() == MM.TYPES.EMPTY and meeple.get_meeple_level() >= min_level and (allowed_type == MM.TYPES.FREE or meeple.get_meeple_type() == allowed_type) #in allowed_types
 
 func _drop_data(_pos, data):
 	var new_meeple := data as Meeple
 	if not new_meeple:
 		return
 		
-	SoundManager.play_drop_click(sound)
-	self.meeple_type = new_meeple.get_type()
-	self.meeple_level = new_meeple.get_level() 
+	SoundManager.play_drop_click(meeple_sound)
+	self.meeple_type = new_meeple.get_meeple_type()
+	self.meeple_level = new_meeple.get_meeple_level() 
 	#new_meeple.meeple_type = MM.TYPES.EMPTY
 	new_meeple.empty_slot()
 	

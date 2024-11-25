@@ -59,6 +59,10 @@ func update_name():
 		name_label.add_theme_color_override("font_color",MM.COLORS[TYPE])
 		name_label.visible = VISIBLE_NAME
 
+func generate_employees(levels:Array[int]) -> void:
+	for meeple_level in levels:
+		create_meeple(meeple_level)
+
 func create_meeple(level_value: int) -> void:
 	if slots:
 		var new_slot = SLOT.instantiate()
@@ -73,10 +77,12 @@ func setup_grid() -> void:
 		create_meeple(meeple_level)
 
 func calculate_expenses() -> int:
+	if not slots :
+		return -1
 	var expanses = 0
 	for slot in slots.get_children():
-		if slot is Slot:
-			expanses += slot.get_price()
+		if slot is Slot and slot.get_meeple_level() >= 0 and !slot.is_queued_for_deletion():
+			expanses += slot.get_meeple_price()
 	return expanses
 
 func clear_slots():
@@ -84,6 +90,23 @@ func clear_slots():
 		for slot in slots.get_children():
 			slot.queue_free()
 
+func empty_slots():
+	if slots:
+		for slot : Slot in slots.get_children():
+			slot.empty_slot()
+
+func set_locked(value : bool):
+	if slots:
+		for slot : Slot in slots.get_children():
+			slot._is_locked = value
+
+func upskill_slots(trainer_level: int):
+	if slots:
+		for slot : Slot in slots.get_children():
+			var meeple_level = slot.get_meeple_level()
+			if meeple_level < trainer_level: # TODO more sofisticated calculation
+				slot.set_meeple_upskill(1)
+			
 func is_full() -> bool:
 	var m_count = 0
 	for slot in slots.get_children():
@@ -96,9 +119,24 @@ func get_prices_sum() -> int:
 	var value = 0
 	for slot in slots.get_children():
 		if slot is Slot and !slot.is_queued_for_deletion(): # TODO is active? avoid empty, also external
-			var price = slot.get_price()
+			var price = slot.get_meeple_price()
 			if price > 0:
 				value += price
 	return value
 #func on_next_step():
 	#pass
+
+func get_employees() -> Array[int]:
+	var list: Array[int]
+	for slot in slots.get_children():
+		if slot is Slot and slot.get_meeple_type() != MM.TYPES.EXTERNAL and not slot.is_queued_for_deletion():
+			var level = slot.get_meeple_level()
+			var upskill = slot.get_meeple_upskill()
+			if slot.is_eployee() and level >= 0: # double check if is not external?
+				list.append(level + upskill)
+				slot.reset_meeple_upskill()
+	return list
+
+func clear_employees():
+	for slot in slots.get_children():
+		slot.queue_free()

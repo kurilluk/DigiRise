@@ -1,44 +1,43 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0mwsgnarsdny"]
+[gd_scene load_steps=20 format=3 uid="uid://d0mwsgnarsdny"]
 
+[ext_resource type="Script" path="res://screens/main/game_logic.gd" id="1_afsom"]
 [ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_rvyh8"]
+[ext_resource type="Script" path="res://screens/main/next_round_button.gd" id="1_t8c36"]
 [ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="2_1c7ie"]
+[ext_resource type="Script" path="res://objects/bar/rounds/rounds_bar.gd" id="2_3o6hu"]
+[ext_resource type="Script" path="res://screens/main/status_bar.gd" id="2_iqawi"]
 [ext_resource type="Script" path="res://objects/upskill/upskill.gd" id="4_h3oh6"]
+[ext_resource type="PackedScene" uid="uid://d1amnq6bhsbss" path="res://objects/training/training.tscn" id="4_mwxem"]
+[ext_resource type="PackedScene" uid="uid://bdngjuar4w214" path="res://objects/hiring/hiring.tscn" id="4_od6yh"]
 [ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="5_ke8wq"]
 [ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="6_4oh0f"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb23p"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.0666667, 0.466667, 0.588235, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf7si"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.164706, 0.490196, 0.294118, 1)
-corner_detail = 6
-anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8e5a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8hvn"]
-bg_color = Color(0.164706, 0.490196, 0.294118, 1)
+bg_color = Color(0.247059, 0.25098, 0.337255, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnnoe"]
+bg_color = Color(0.196078, 0.2, 0.282353, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3xtf"]
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7swpi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m8u8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_for5p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgqiv"]
+
+[node name="MainScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_afsom")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -47,198 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.129412, 0.12549, 0.164706, 1)
-
-[node name="MeepleMenu" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -960.0
-offset_top = -150.0
-offset_right = 960.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 24
-alignment = 1
-
-[node name="External" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
-layout_mode = 2
-size_flags_vertical = 8
-NAME = "Experts"
-TYPE = 1
-EMPTY_SLOTS = false
-MEEPLE_levels = Array[int]([5, 5, 10])
-
-[node name="Internal" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
-NAME = "UNUTILIZED EMPLOYEES"
-EMPTY_SLOTS = false
-MEEPLE_levels = Array[int]([0, 1, 1, 2, 2, 3])
-
-[node name="Fired" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
-layout_mode = 2
-size_flags_vertical = 8
-NAME = "Fired"
-MEEPLE_levels = Array[int]([0, 0, 0])
-
-[node name="Hire" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
-layout_mode = 2
-size_flags_vertical = 8
-NAME = "Hire"
-TYPE = 2
-EMPTY_SLOTS = false
-MEEPLE_levels = Array[int]([2, 3, 3])
-
-[node name="Test" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
-visible = false
-layout_mode = 2
-size_flags_vertical = 8
-NAME = "Test"
-TYPE = 1
-MEEPLE_levels = Array[int]([5, 5, 10])
-
-[node name="StatusBar" type="HBoxContainer" parent="."]
-modulate = Color(0.615829, 0.615829, 0.615829, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.75
-anchor_right = 0.5
-anchor_bottom = 0.75
-offset_left = -960.0
-offset_top = -20.0
-offset_right = 960.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 4
-
-[node name="Money_container" type="PanelContainer" parent="StatusBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_lb23p")
-
-[node name="ColorRect" type="ColorRect" parent="StatusBar/Money_container"]
-visible = false
-layout_mode = 2
-color = Color(0.0666667, 0.466667, 0.588235, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Money_container"]
-layout_mode = 2
-
-[node name="Money" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "MONEY:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Money_value" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
-text = "3500"
-vertical_alignment = 1
-
-[node name="ProfitLoss_container" type="PanelContainer" parent="StatusBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cf7si")
-
-[node name="ColorRect" type="ColorRect" parent="StatusBar/ProfitLoss_container"]
-visible = false
-layout_mode = 2
-color = Color(0.164706, 0.490196, 0.294118, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/ProfitLoss_container"]
-layout_mode = 2
-
-[node name="Profit-Loss" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "PROFIT/LOSS:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Profit-Loss_value" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
-text = "3500"
-vertical_alignment = 1
-
-[node name="Fired_container" type="PanelContainer" parent="StatusBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="StatusBar/Fired_container"]
-layout_mode = 2
-color = Color(0.588235, 0.403922, 0.0666667, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Fired_container"]
-layout_mode = 2
-
-[node name="Fired" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "FIRED EMPLOYEES:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Fired_value" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
-text = "12"
-vertical_alignment = 1
-
-[node name="Rounds" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -160.0
-offset_right = 160.0
-offset_bottom = 66.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Steps" type="Label" parent="Rounds"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "ROUND:"
-horizontal_alignment = 1
-
-[node name="Steps_value" type="Label" parent="Rounds"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
-text = "1/15"
-horizontal_alignment = 1
+color = Color(0.0784314, 0.0823529, 0.168627, 1)
 
 [node name="NextButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -248,22 +56,22 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = 100.0
-offset_right = 135.0
-offset_bottom = 164.0
+offset_left = -56.0
+offset_top = 128.0
+offset_right = 420.0
+offset_bottom = 183.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = -1.5708
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8e5a")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q8hvn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hnnoe")
@@ -271,9 +79,41 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_q8hvn")
 action_mode = 0
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "D O N E
-"
+text = "NEXT ROUND"
 icon_alignment = 1
+script = ExtResource("1_t8c36")
+
+[node name="RoundsBar" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 0.02
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 67.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("2_3o6hu")
+
+[node name="Rounds_label" type="Label" parent="RoundsBar"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ROUND:"
+horizontal_alignment = 1
+
+[node name="Rounds_value" type="Label" parent="RoundsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "1/15"
+horizontal_alignment = 1
 
 [node name="MainMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -292,9 +132,15 @@ alignment = 1
 
 [node name="VBoxContainer" type="GridContainer" parent="MainMenu"]
 layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 4
-columns = 2
+theme_override_constants/v_separation = 64
+
+[node name="Training" parent="MainMenu/VBoxContainer" instance=ExtResource("4_mwxem")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Hiring" parent="MainMenu/VBoxContainer" instance=ExtResource("4_od6yh")]
+layout_mode = 2
 
 [node name="Hire_old" parent="MainMenu/VBoxContainer" instance=ExtResource("2_1c7ie")]
 unique_name_in_owner = true
@@ -302,7 +148,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Education" type="PanelContainer" parent="MainMenu/VBoxContainer"]
+[node name="Training_old" type="PanelContainer" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(320, 0)
@@ -312,24 +158,24 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_p3xtf")
 script = ExtResource("4_h3oh6")
 
-[node name="BG_Color_Top" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+[node name="BG_Color_Top" type="ColorRect" parent="MainMenu/VBoxContainer/Training_old"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 132)
 layout_mode = 2
 size_flags_vertical = 0
 color = Color(0.301961, 0.301961, 0.301961, 1)
 
-[node name="BG_Color" type="ColorRect" parent="MainMenu/VBoxContainer/Education"]
+[node name="BG_Color" type="ColorRect" parent="MainMenu/VBoxContainer/Training_old"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
 color = Color(0.255659, 0.255659, 0.255659, 1)
 
-[node name="CentralPanel" type="VBoxContainer" parent="MainMenu/VBoxContainer/Education"]
+[node name="CentralPanel" type="VBoxContainer" parent="MainMenu/VBoxContainer/Training_old"]
 layout_mode = 2
 
-[node name="Upskill" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+[node name="Upskill" type="Label" parent="MainMenu/VBoxContainer/Training_old/CentralPanel"]
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -338,7 +184,7 @@ text = "   Training 300, UPSkill +1"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Fee_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+[node name="Fee_value" type="Label" parent="MainMenu/VBoxContainer/Training_old/CentralPanel"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -349,7 +195,7 @@ text = "PRICE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Posibilities" type="HBoxContainer" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+[node name="Posibilities" type="HBoxContainer" parent="MainMenu/VBoxContainer/Training_old/CentralPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -357,19 +203,19 @@ size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Employee" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+[node name="Employee" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
 layout_mode = 2
 
-[node name="Employee2" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+[node name="Employee2" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
 layout_mode = 2
 
-[node name="Employee3" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+[node name="Employee3" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
 layout_mode = 2
 
-[node name="Employee4" parent="MainMenu/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
+[node name="Employee4" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Posibilities" instance=ExtResource("5_ke8wq")]
 layout_mode = 2
 
-[node name="Upskill_value" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel"]
+[node name="Upskill_value" type="Label" parent="MainMenu/VBoxContainer/Training_old/CentralPanel"]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
@@ -379,7 +225,7 @@ text = "---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Upskill_label" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
+[node name="Upskill_label" type="Label" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Upskill_value"]
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
@@ -395,7 +241,7 @@ text = "Expenses:"
 vertical_alignment = 1
 uppercase = true
 
-[node name="Upskill_label2" type="Label" parent="MainMenu/VBoxContainer/Education/CentralPanel/Upskill_value"]
+[node name="Upskill_label2" type="Label" parent="MainMenu/VBoxContainer/Training_old/CentralPanel/Upskill_value"]
 visible = false
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 32)
@@ -413,12 +259,238 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="VSeparator" type="VSeparator" parent="MainMenu"]
-visible = false
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7swpi")
 
 [node name="Market" parent="MainMenu" instance=ExtResource("6_4oh0f")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(800, 500)
 layout_mode = 2
-size_flags_horizontal = 1
+
+[node name="MeepleMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -150.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="External" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Experts"
+TYPE = 1
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([5, 5, 10])
+
+[node name="Internal" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "UNUTILIZED EMPLOYEES"
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([0, 0, 1, 1, 2, 2, 3])
+
+[node name="Fired" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Fired"
+MEEPLE_levels = Array[int]([0, 0, 0])
+
+[node name="Hire" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Hire"
+TYPE = 2
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([2, 3, 3])
+
+[node name="Test" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+NAME = "Test"
+TYPE = 1
+MEEPLE_levels = Array[int]([5, 5, 10])
+
+[node name="StatusBar" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -960.0
+offset_top = -20.0
+offset_right = 960.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+script = ExtResource("2_iqawi")
+
+[node name="Money_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2m8u8")
+
+[node name="Background" type="ColorRect" parent="StatusBar/Money_container"]
+layout_mode = 2
+color = Color(0.196078, 0.2, 0.282353, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Money_container"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "MONEY:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money_value" type="Label" parent="StatusBar/Money_container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "3500"
+vertical_alignment = 1
+
+[node name="ProfitLoss_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_for5p")
+
+[node name="Background" type="ColorRect" parent="StatusBar/ProfitLoss_container"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.164706, 0.490196, 0.294118, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/ProfitLoss_container"]
+layout_mode = 2
+
+[node name="Profit-Loss" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "PROFIT/LOSS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Profit-Loss_value" type="Label" parent="StatusBar/ProfitLoss_container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "3500"
+vertical_alignment = 1
+
+[node name="Fired_container" type="PanelContainer" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pgqiv")
+
+[node name="Background" type="ColorRect" parent="StatusBar/Fired_container"]
+layout_mode = 2
+color = Color(0.196078, 0.2, 0.282353, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/Fired_container"]
+layout_mode = 2
+
+[node name="Fired" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "FIRED EMPLOYEES:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fired_value" type="Label" parent="StatusBar/Fired_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "12"
+vertical_alignment = 1
+
+[node name="EndScreen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.301961, 0.301961, 0.301961, 0.898039)
+
+[node name="PanelContainer" type="PanelContainer" parent="EndScreen/Background"]
+custom_minimum_size = Vector2(320, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndLabel" type="Label" parent="EndScreen/Background/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONGRATULATION!
+YOUR SCORE IS:
+"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Button2" type="Button" parent="EndScreen/Background/PanelContainer/EndLabel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+offset_left = 2.0
+offset_top = 113.0
+offset_right = 322.0
+offset_bottom = 173.0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+text = "TRY AGAIN"
+
+[node name="Screen_sound" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
