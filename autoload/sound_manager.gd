@@ -27,7 +27,7 @@ const SOUNDS = {
 	SOUND_LOCK: preload("res://assets/sounds/Locked_by_keys_01.ogg"),
 	SOUND_DEFEAT: preload("res://assets/sounds/Orchestral_Defeat_sound_02.mp3"),
 	SOUND_VICTORY: preload("res://assets/sounds/Orchestral_Victory_sound_03_200BPM.mp3"),
-	SOUND_PROJECT_DONE: preload("res://assets/sounds/Cmajor9_HIT_separated.ogg")
+	SOUND_PROJECT_DONE: preload("res://assets/sounds/sfx/Project_finished_01.ogg")
 	#SOUND_SELECT_ERROR: preload("res://assets/sounds/error_008.ogg")
 }
 

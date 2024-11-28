@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://rfdj4d3yoes3"]
 
-[ext_resource type="AudioStream" uid="uid://dixim48i7c2c3" path="res://assets/music/Amajor9_LOOP_seamless_START.ogg" id="1_50e2h"]
+[ext_resource type="AudioStream" uid="uid://cshke7ti0hway" path="res://assets/sounds/ambient/loop/01_Amajor9_LOOP_seamless_MIXED.ogg" id="1_chftu"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_50e2h")
+stream = ExtResource("1_chftu")
 autoplay = true
 bus = &"Music"
