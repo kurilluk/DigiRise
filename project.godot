@@ -21,7 +21,7 @@ config/icon="res://_resources/icons/icon.svg"
 
 GameManager="*res://autoload/game_manager.gd"
 SignalManager="*res://autoload/signal_manager.gd"
-Music="*res://autoload/music.tscn"
+Music="res://autoload/music.tscn"
 SoundManager="*res://autoload/sound_manager.gd"
 MM="*res://autoload/MM.gd"
 

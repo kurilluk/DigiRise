@@ -31,6 +31,42 @@ const SOUNDS = {
 	#SOUND_SELECT_ERROR: preload("res://assets/sounds/error_008.ogg")
 }
 
+const AMBIENT_LOOP = [
+	preload("res://assets/sounds/ambient/loop/01_Amajor9_LOOP_seamless_MIXED.ogg"),
+	preload("res://assets/sounds/ambient/loop/02_Cmajor9_LOOP_seamless_MIXED.ogg"),
+	preload("res://assets/sounds/ambient/loop/03_G#maj9_LOOP_seamless_MIXED.ogg"),
+	preload("res://assets/sounds/ambient/loop/04_Aminor9_LOOP_seamless_MIXED.ogg")
+]
+
+const AMBIENT_HIT = [
+	preload("res://assets/sounds/ambient/hit/01_Amajor9_HIT.ogg"),
+	preload("res://assets/sounds/ambient/hit/02_Cmajor9_HIT.ogg"),
+	preload("res://assets/sounds/ambient/hit/03_G#maj9_HIT.ogg"),
+	preload("res://assets/sounds/ambient/hit/04_Aminor9_HIT.ogg")
+]
+
+var _ambient_phase : int = 0
+
+func next_ambient_phase():
+	_ambient_phase += 1
+	if _ambient_phase > AMBIENT_HIT.size()-1:
+		_ambient_phase = 0
+
+func play_initial_ambient_loop_only(loop: AudioStreamPlayer):
+	loop.stop()
+	loop.stream = AMBIENT_LOOP[3]
+	loop.play()
+
+func play_ambient_hit(loop: AudioStreamPlayer, hit: AudioStreamPlayer):
+	hit.stop()
+	hit.stream = AMBIENT_HIT[_ambient_phase]
+	hit.play()
+	
+	loop.stop()
+	loop.stream = AMBIENT_LOOP[_ambient_phase]
+	loop.play()
+	next_ambient_phase()
+
 func play_sound(player: AudioStreamPlayer, key: String) -> void:
 	if SOUNDS.has(key) == false:
 		return

@@ -14,6 +14,7 @@ var _is_done : bool
 var _is_activated: bool
 var _price: int
 var _income: int
+var _trainer_level: int
 
 func _ready():
 	reset_menu()
@@ -32,6 +33,7 @@ func check_project_status():
 	_is_done = slot_menu.is_full()
 	# new function to change status
 	activate()
+	upskill_students()
 	update_expanses()
 	#update_income()
 	#change_color()
@@ -41,7 +43,12 @@ func activate():
 	if _is_done and not _is_activated:
 		students.TYPE = MM.TYPES.INTERNAL
 		slot_menu.set_locked(true)
+		_trainer_level = slot_menu.slots.get_child(0).get_meeple_level() #.MEEPLE_levels[0]
 		_is_activated = true
+
+func upskill_students():
+	if _is_activated:
+		students.upskill_slots(_trainer_level) # TODO get slot/trainer level
 
 func update_expanses():
 	var expanses = slot_menu.get_prices_sum()
@@ -117,7 +124,7 @@ func get_expanses() -> int:
 
 ### slot changed to students - overriden
 func get_employees() -> Array[int]:
-	students.upskill_slots(10) # TODO get slot/trainer level
+	#students.upskill_slots(10) # TODO get slot/trainer level
 	return students.get_employees()
 	#var list: Array[int]
 	#for slot in slots.get_children():

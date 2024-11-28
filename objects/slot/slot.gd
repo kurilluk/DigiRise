@@ -32,6 +32,8 @@ func _ready():
 	#_color = MM.COLORS[type]
 	#meeple_texture.modulate = _color
 	#_price = MM.get_price(level)
+	#upskill_icon.visible = false
+	self.set_meeple_upskill(0)
 	update_visuals()
 	update_slot_visuals()
 	set_min_level_color()
@@ -141,9 +143,11 @@ func _drop_data(_pos, data):
 		
 	SoundManager.play_drop_click(meeple_sound)
 	self.meeple_type = new_meeple.get_meeple_type()
-	self.meeple_level = new_meeple.get_meeple_level() 
+	self.meeple_level = new_meeple.get_meeple_level()
+	self.set_meeple_upskill(0)
 	#new_meeple.meeple_type = MM.TYPES.EMPTY
 	new_meeple.empty_slot()
+	new_meeple.set_meeple_upskill(0)
 	
 	SignalManager.on_project_meeple_change.emit()
 

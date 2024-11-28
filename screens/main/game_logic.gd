@@ -2,6 +2,8 @@ extends Control
 
 @onready var screen_sound = $Screen_sound
 @onready var buttons_sound: AudioStreamPlayer = $Buttons_sound
+@onready var ambient_loop: AudioStreamPlayer = $Ambient_loop
+@onready var ambient_hit: AudioStreamPlayer = $Ambient_hit
 
 @onready var status_bar: Control = %StatusBar
 @onready var rounds_bar: Control = %RoundsBar
@@ -11,7 +13,7 @@ extends Control
 @onready var internal = %Internal
 @onready var fire_only = %Fire_only
 @onready var market = %Market
-@onready var training: Training = %Training
+@onready var training = %Training
 @onready var hiring: Hiring = %Hiring
 @onready var firing: = %Firing
 
@@ -20,6 +22,7 @@ func _ready():
 	status_bar.update_profit_loss()
 	rounds_bar.reset_round_counter()
 	SignalManager.on_new_round_button_pressed.connect(_on_next_phase_button_pressed)
+	SoundManager.play_initial_ambient_loop_only(ambient_loop)
 	%EndScreen.visible = false
 
 func _on_next_phase_button_pressed():
@@ -40,21 +43,25 @@ func upskill_meeples():
 	
 func score_round():
 	var money = status_bar.score_round()
-	SoundManager.play_next_click(buttons_sound)	
-	
+	#SoundManager.play_next_click(buttons_sound)
+	SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
+		
 	# update levelu
 	var last_round_end = rounds_bar.set_next_round()
 	if last_round_end: #_step != MM.ROUNDS:
 		%EndLabel.text = "You win:\nYour score is\n%s" % money
 		%EndScreen.visible = true
-		SoundManager.play_sound(screen_sound,SoundManager.SOUND_VICTORY)
+		SoundManager.play_sound(ambient_loop,SoundManager.SOUND_VICTORY)
 		return
 	
 	if money < 0:
 		%EndLabel.text = "Game Over:\nYour capital is negative.\nBetter luck next time!"
 		%EndScreen.visible = true
-		SoundManager.play_sound(screen_sound,SoundManager.SOUND_DEFEAT)
+		SoundManager.play_sound(ambient_loop,SoundManager.SOUND_DEFEAT)
 		#print("THE END - zero capital!")
+		return
+	
+	#SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
 	
 	# 2nd phase: upskill -> project, education, and create intern emp. list 
 		# zapamataj si emp. na projekte - skillni ich podla pravidiel
@@ -91,6 +98,8 @@ func reset_board():
 	# reset experts
 	external.reset_slots()
 	
+	var fired_employees = firing.get_employees()
+	status_bar.add_fired_employees(fired_employees)
 	firing.reset_slots()
 	
 	training.reset_menu()
