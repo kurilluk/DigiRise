@@ -441,7 +441,7 @@ volume_db = -5.0
 volume_db = -5.0
 
 [node name="Ambient_loop" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
+volume_db = -10.0
 
 [node name="Ambient_hit" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0

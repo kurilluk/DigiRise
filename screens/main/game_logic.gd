@@ -22,8 +22,8 @@ func _ready():
 	status_bar.update_profit_loss()
 	rounds_bar.reset_round_counter()
 	SignalManager.on_new_round_button_pressed.connect(_on_next_phase_button_pressed)
-	SoundManager.play_initial_ambient_loop_only(ambient_loop)
-	#SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
+	#SoundManager.play_initial_ambient_loop_only(ambient_loop)
+	SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
 	%EndScreen.visible = false
 
 func _on_next_phase_button_pressed():
@@ -45,7 +45,7 @@ func upskill_meeples():
 func score_round():
 	var money = status_bar.score_round()
 	#SoundManager.play_next_click(buttons_sound)
-	#SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
+	SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
 		
 	# update levelu
 	var last_round_end = rounds_bar.set_next_round()
@@ -62,7 +62,7 @@ func score_round():
 		#print("THE END - zero capital!")
 		return
 	
-	SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
+	#SoundManager.play_ambient_hit(ambient_loop,ambient_hit)
 	
 	# 2nd phase: upskill -> project, education, and create intern emp. list 
 		# zapamataj si emp. na projekte - skillni ich podla pravidiel

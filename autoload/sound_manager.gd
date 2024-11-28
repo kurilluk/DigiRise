@@ -25,8 +25,8 @@ const SOUNDS = {
 	SOUND_DROP: preload("res://assets/sounds/Wooden_Click_02.wav"),
 	#SOUND_LOCK: preload("res://assets/sounds/Locked_LATCH_01.ogg")
 	SOUND_LOCK: preload("res://assets/sounds/Locked_by_keys_01.ogg"),
-	SOUND_DEFEAT: preload("res://assets/sounds/ambient/hit/end_defeat_orchestral_05_120BPM.ogg"), #preload("res://assets/sounds/Orchestral_Defeat_sound_02.mp3"),
-	SOUND_VICTORY: preload("res://assets/sounds/ambient/hit/end_victory_orchestral_05_200BPM.ogg"), #preload("res://assets/sounds/Orchestral_Victory_sound_03_200BPM.mp3"),
+	SOUND_DEFEAT: preload("res://assets/sounds/Orchestral_Defeat_sound_02.mp3"),#preload("res://assets/sounds/ambient/hit/end_defeat_orchestral_05_120BPM.ogg"), #
+	SOUND_VICTORY: preload("res://assets/sounds/Orchestral_Victory_sound_03_200BPM.mp3"),#preload("res://assets/sounds/ambient/hit/end_victory_orchestral_05_200BPM.ogg"), #
 	SOUND_PROJECT_DONE: preload("res://assets/sounds/sfx/Project_finished_01.ogg")
 	#SOUND_SELECT_ERROR: preload("res://assets/sounds/error_008.ogg")
 }
