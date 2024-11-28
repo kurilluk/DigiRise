@@ -6,6 +6,7 @@ extends Control
 @onready var profit_loss = %"Profit-Loss_value"
 @onready var profit_loss_background: ColorRect = %Background
 @onready var training: Training = %Training
+@onready var hiring: Hiring = %Hiring
 
 var _money : int
 var _profit_loss: int 
@@ -21,6 +22,7 @@ func update_profit_loss():
 	# expanses from unutilized emp
 	var expanses = internal.calculate_expenses()
 	expanses -= training.get_expanses()
+	expanses -= hiring.get_expanses()
 
 	_profit_loss = income - expanses
 	set_profit_loss_value(_profit_loss)

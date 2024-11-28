@@ -1,8 +1,8 @@
 @tool
 extends Node
 
-const ROUNDS : int = 15
-const INITIAL_MONEY : int = 15000
+const ROUNDS : int = 4
+const INITIAL_MONEY : int = 1500
 
 enum TYPES {
 	FREE = -2,
@@ -30,7 +30,7 @@ const COLORS = {
 }
 
 const _price_factor: int = 20
-const _external_multiplier = 1.6
+const _external_multiplier = 1.3
 const _basic_price: int = 100
 
 func get_price(level:int, external: bool = false)-> int:

@@ -1,22 +1,25 @@
 extends Control
 
 @onready var screen_sound = $Screen_sound
+@onready var buttons_sound: AudioStreamPlayer = $Buttons_sound
 
 @onready var status_bar: Control = %StatusBar
 @onready var rounds_bar: Control = %RoundsBar
 
-@onready var external = %External
+@onready var external = %Experts
 @onready var hire = %Hire
 @onready var internal = %Internal
 @onready var fire_only = %Fire_only
 @onready var market = %Market
 @onready var training: Training = %Training
-
+@onready var hiring: Hiring = %Hiring
+@onready var firing: = %Firing
 
 func _ready():
 	status_bar.set_initial_money()
 	status_bar.update_profit_loss()
 	rounds_bar.reset_round_counter()
+	SignalManager.on_new_round_button_pressed.connect(_on_next_phase_button_pressed)
 	%EndScreen.visible = false
 
 func _on_next_phase_button_pressed():
@@ -37,20 +40,20 @@ func upskill_meeples():
 	
 func score_round():
 	var money = status_bar.score_round()
-	SoundManager.play_next_click(screen_sound)	
+	SoundManager.play_next_click(buttons_sound)	
 	
 	# update levelu
 	var last_round_end = rounds_bar.set_next_round()
 	if last_round_end: #_step != MM.ROUNDS:
 		%EndLabel.text = "You win:\nYour score is\n%s" % money
 		%EndScreen.visible = true
-		# TODO play the sound - victory!!!
+		SoundManager.play_sound(screen_sound,SoundManager.SOUND_VICTORY)
 		return
 	
 	if money < 0:
 		%EndLabel.text = "Game Over:\nYour capital is negative.\nBetter luck next time!"
 		%EndScreen.visible = true
-		# TODO play the sound - lose!!!
+		SoundManager.play_sound(screen_sound,SoundManager.SOUND_DEFEAT)
 		#print("THE END - zero capital!")
 	
 	# 2nd phase: upskill -> project, education, and create intern emp. list 
@@ -73,6 +76,7 @@ func reset_board():
 	list_of_employees.append_array(market.get_employees())
 	list_of_employees.append_array(internal.get_employees())
 	list_of_employees.append_array(training.get_employees())
+	list_of_employees.append_array(hiring.get_employees())
 	#list_of_employees.append_array(%Education.get_employees())
 	list_of_employees.sort()
 	#list_of_employees.reverse()
@@ -85,11 +89,15 @@ func reset_board():
 	#hire.setup_grid()
 	
 	# reset experts
-	external.clear_slots()  #clear_intern()
-	external.setup_grid()
+	external.reset_slots()
+	
+	firing.reset_slots()
 	
 	training.reset_menu()
 	training.update_expanses()
+	
+	hiring.reset_menu()
+	hiring.update_expanses()
 	
 	internal.clear_employees()
 	internal.generate_employees(list_of_employees) #TODO list of used employees
@@ -109,7 +117,7 @@ func reset_board():
 
 var _nute_music = true
 func _on_music_is_pressed():
-	SoundManager.play_button_click(screen_sound)
+	SoundManager.play_button_click(buttons_sound)
 	AudioServer.set_bus_mute(2,_nute_music)
 	_nute_music = !_nute_music
 

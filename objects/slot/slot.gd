@@ -38,7 +38,7 @@ func _ready():
 
 func update_visuals():
 	#print("I AM IN SLOT FUNCTION!")
-	if meeple_type == MM.TYPES.EMPTY:
+	if meeple_type == MM.TYPES.EMPTY or _is_locked:
 		#price_label.visible = false
 		self.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	else:

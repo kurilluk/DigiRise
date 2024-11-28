@@ -1,6 +1,7 @@
 @tool
 class_name SlotMenu extends Control
 
+@onready var slot_menu_sound: AudioStreamPlayer = %SlotMenu_sound
 @onready var slots = %Slots
 @onready var name_label: Label = %Name
 const SLOT = preload("res://objects/slot/slot.tscn")
@@ -98,7 +99,10 @@ func empty_slots():
 func set_locked(value : bool):
 	if slots:
 		for slot : Slot in slots.get_children():
-			slot._is_locked = value
+			slot.lock_meeple(value)
+			slot.update_visuals()
+			if value:
+				SoundManager.play_sound(slot_menu_sound, SoundManager.SOUND_LOCK)
 
 func upskill_slots(trainer_level: int):
 	if slots:

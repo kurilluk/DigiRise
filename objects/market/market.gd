@@ -3,7 +3,7 @@ extends Control
 
 const PROJECT = preload("res://objects/project/project.tscn")
 
-@onready var offers = %Offers
+@onready var projects: Market = $"."
 
 const MAX_LEVEL = 10
 
@@ -21,14 +21,14 @@ var _phase = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	offers.columns = 2
+	projects.columns = 2
 	clear_projects_on_market()
 	generate_projects(_projects_count,_phase)
 	SignalManager.on_new_step.connect(on_next_step)
 
 func create_new_project(phase: int) -> void:
 	var new_project = PROJECT.instantiate()
-	offers.add_child(new_project)
+	projects.add_child(new_project)
 	#var req: Array[int] = [2,1,1,1,0]
 	var req = PROJECT_TYPES[randi() % PROJECT_TYPES.size()]
 	new_project.set_requirements(increase_project_reg(req,phase))
@@ -55,7 +55,7 @@ func generate_projects(count: int, phase: int) -> void:
 	#pass
 
 func clear_projects_on_market():
-	for project in offers.get_children():
+	for project in projects.get_children():
 		project.queue_free()
 
 func on_next_step():
@@ -64,10 +64,10 @@ func on_next_step():
 	generate_projects(_projects_count, _phase)
 	
 func calculate_income() -> int:
-	if not offers:
+	if not projects:
 		return -1
 	var income = 0
-	for project in offers.get_children():
+	for project in projects.get_children():
 		if project is Project and not project.is_queued_for_deletion():
 			income += project._income
 			#if project._is_done:
@@ -77,7 +77,7 @@ func calculate_income() -> int:
 	
 func get_employees() -> Array[int]:
 	var list: Array[int]
-	for project in offers.get_children():
+	for project in projects.get_children():
 		if project is Project:
 			list.append_array(project.get_employees())
 	return list

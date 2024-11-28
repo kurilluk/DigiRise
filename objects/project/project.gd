@@ -1,5 +1,7 @@
 class_name Project extends Control
 
+@onready var project_sound: AudioStreamPlayer = $Project_sound
+
 @onready var background = %HeadBackground
 @onready var slot_menu = %Requirements
 @onready var price = %Fee_value
@@ -17,10 +19,17 @@ func _ready():
 	SignalManager.on_project_meeple_change.connect(check_project_status)
 
 func check_project_status():
-	_is_done = slot_menu.is_full()
+	#_is_done = slot_menu.is_full()
+	set_is_done(slot_menu.is_full())
 	update_income()
 	change_color()
 	SignalManager.on_project_change.emit()
+
+func set_is_done(value : bool):
+	if !_is_done and value:
+		# TODO play sound
+		SoundManager.play_sound(project_sound, SoundManager.SOUND_PROJECT_DONE)
+	_is_done = value
 
 func update_income():
 	var expanses = slot_menu.get_prices_sum() #calculate_real_expanses()

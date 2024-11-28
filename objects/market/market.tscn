@@ -3,14 +3,33 @@
 [ext_resource type="Script" path="res://objects/market/market.gd" id="1_k2vph"]
 [ext_resource type="PackedScene" uid="uid://qfgj17dwemc6" path="res://objects/project/project.tscn" id="2_ebvvy"]
 
-[node name="Market" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Projects" type="GridContainer"]
+offset_right = 712.0
+offset_bottom = 468.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+columns = 2
 script = ExtResource("1_k2vph")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="DummyProject01" parent="." instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject02" parent="." instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject03" parent="." instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="DummyProject04" parent="." instance=ExtResource("2_ebvvy")]
+layout_mode = 2
+
+[node name="Market" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Market"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -18,31 +37,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Offers" type="GridContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -228.0
-offset_right = 712.0
-offset_bottom = 228.0
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/h_separation = 64
-theme_override_constants/v_separation = 64
-columns = 2
-
-[node name="DummyProject01" parent="Offers" instance=ExtResource("2_ebvvy")]
-layout_mode = 2
-
-[node name="DummyProject02" parent="Offers" instance=ExtResource("2_ebvvy")]
-layout_mode = 2
-
-[node name="DummyProject03" parent="Offers" instance=ExtResource("2_ebvvy")]
-layout_mode = 2
-
-[node name="DummyProject04" parent="Offers" instance=ExtResource("2_ebvvy")]
-layout_mode = 2

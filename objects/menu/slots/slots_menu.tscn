@@ -17,11 +17,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.588235, 0.494118, 0.0666667, 1)
+theme_override_colors/font_color = Color(0.203922, 0.588235, 0.717647, 1)
 theme_override_font_sizes/font_size = 18
 text = "Name"
 horizontal_alignment = 1
-vertical_alignment = 1
 uppercase = true
 
 [node name="Slots" type="HBoxContainer" parent="."]
@@ -31,3 +30,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 6
 alignment = 1
+
+[node name="SlotMenu_sound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
