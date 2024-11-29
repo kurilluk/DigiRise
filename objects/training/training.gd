@@ -18,19 +18,21 @@ var _trainer_level: int
 
 func _ready():
 	reset_menu()
+	students.TYPE = MM.TYPES.INTERNAL
 	SignalManager.on_project_meeple_change.connect(check_project_status)	
 
 func reset_menu():
 	_is_activated = false
 	_is_done = false
 	students.clear_slots()
-	students.TYPE = MM.TYPES.EMPTY
+	students.TYPE = MM.TYPES.INTERNAL
 	slot_menu.empty_slots()
 	slot_menu.set_locked(false)
 	#slot_menu.TYPE = MM.TYPES.EXTERNAL
 
 func check_project_status():
 	_is_done = slot_menu.is_full()
+	#print(_is_done)
 	# new function to change status
 	activate()
 	upskill_students()
@@ -40,15 +42,17 @@ func check_project_status():
 	SignalManager.on_project_change.emit()
 
 func activate():
-	if _is_done and not _is_activated:
-		students.TYPE = MM.TYPES.INTERNAL
-		slot_menu.set_locked(true)
+	if _is_done:# and not _is_activated:
+		#students.TYPE = MM.TYPES.INTERNAL
+		#slot_menu.set_locked(true)
 		_trainer_level = slot_menu.slots.get_child(0).get_meeple_level() #.MEEPLE_levels[0]
-		_is_activated = true
+		#_is_activated = true
 
 func upskill_students():
-	if _is_activated:
-		students.upskill_slots(_trainer_level) # TODO get slot/trainer level
+	if _is_done: #_is_activated and 
+		students.upskill_slots(_trainer_level)
+	else:
+		students.upskill_slots(0)
 
 func update_expanses():
 	var expanses = slot_menu.get_prices_sum()

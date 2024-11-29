@@ -6,6 +6,7 @@ const MEEPLE_TEXTURE = preload("res://objects/meeple/Meeple_rect.svg")
 
 @onready var meeple_sound: AudioStreamPlayer = $Meeple_sound
 @onready var upskill_icon: Label = %Upskill_icon
+@onready var upskill_icon2: Label = %Upskill_icon2
 
 @export var meeple_type: MM.TYPES = MM.TYPES.EMPTY:
 	set(value):
@@ -31,10 +32,15 @@ func set_meeple_upskill(upskill_value: int):
 	if _upskill != upskill_value:
 		_upskill = upskill_value
 		# TODO animation here
-		if upskill_value > 0:
+		if upskill_value == 2:
 			upskill_icon.visible = true
+			upskill_icon2.visible = true
+		elif upskill_value == 1:
+			upskill_icon.visible = true
+			upskill_icon2.visible = false
 		else:
 			upskill_icon.visible = false
+			upskill_icon2.visible = false
 
 func get_meeple_upskill() -> int:
 	return _upskill

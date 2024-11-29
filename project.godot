@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="DigiRiSE"
+config/version="0.2"
 run/main_scene="res://test/footer_menu_test.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.0784314, 0.0823529, 0.168627, 1)
-boot_splash/image="res://_resources/images/DigiRiSE_630x500.png"
+boot_splash/image="res://_resources/images/poster 97x100.png"
 config/icon="res://_resources/icons/icon.svg"
 
 [autoload]

@@ -109,7 +109,13 @@ func upskill_slots(trainer_level: int):
 		for slot : Slot in slots.get_children():
 			var meeple_level = slot.get_meeple_level()
 			if meeple_level < trainer_level and slot.get_meeple_type() == MM.TYPES.INTERNAL: # TODO more sofisticated calculation
-				slot.set_meeple_upskill(1)
+				var ratio : float = float(trainer_level) / (float(trainer_level) - float(meeple_level))
+				if  ratio < 2:
+					slot.set_meeple_upskill(2)
+				else:
+					slot.set_meeple_upskill(1)
+			else:
+				slot.set_meeple_upskill(0)
 			
 func is_full() -> bool:
 	var m_count = 0

@@ -1,8 +1,8 @@
 @tool
 extends Node
 
-const ROUNDS : int = 14
-const INITIAL_MONEY : int = 15000
+const ROUNDS : int = 15
+const INITIAL_MONEY : int = 1500
 
 enum TYPES {
 	FREE = -2,

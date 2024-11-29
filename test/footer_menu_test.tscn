@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0mwsgnarsdny"]
+[gd_scene load_steps=22 format=3 uid="uid://d0mwsgnarsdny"]
 
 [ext_resource type="Script" path="res://screens/main/game_logic.gd" id="1_afsom"]
 [ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_rvyh8"]
@@ -26,6 +26,18 @@ bg_color = Color(0.196078, 0.2, 0.282353, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_for5p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgqiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3um22"]
+bg_color = Color(0.196078, 0.2, 0.282353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n4dn"]
+bg_color = Color(0.247059, 0.25098, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpgwm"]
+bg_color = Color(0.203922, 0.588235, 0.717647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hgig"]
+bg_color = Color(0.196078, 0.2, 0.282353, 1)
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -131,10 +143,6 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/v_separation = 64
-
-[node name="Training2" parent="MainMenu/LeftContainer" instance=ExtResource("4_mwxem")]
-visible = false
-layout_mode = 2
 
 [node name="External" parent="MainMenu/LeftContainer" instance=ExtResource("1_rvyh8")]
 unique_name_in_owner = true
@@ -364,13 +372,17 @@ vertical_alignment = 1
 
 [node name="EndScreen" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Background" type="ColorRect" parent="EndScreen"]
 layout_mode = 1
@@ -379,14 +391,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.301961, 0.301961, 0.301961, 0.898039)
+color = Color(0.0799, 0.084405, 0.17, 0.721569)
 
 [node name="PanelContainer" type="PanelContainer" parent="EndScreen/Background"]
-custom_minimum_size = Vector2(320, 128)
+custom_minimum_size = Vector2(640, 128)
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.259
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
@@ -395,6 +407,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3um22")
 
 [node name="EndLabel" type="Label" parent="EndScreen/Background/PanelContainer"]
 unique_name_in_owner = true
@@ -407,13 +420,21 @@ uppercase = true
 
 [node name="Button2" type="Button" parent="EndScreen/Background/PanelContainer/EndLabel"]
 custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-offset_left = 2.0
-offset_top = 113.0
-offset_right = 322.0
-offset_bottom = 173.0
-grow_vertical = 2
-pivot_offset = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = 149.28
+offset_right = 160.0
+offset_bottom = 209.28
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_3n4dn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpgwm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hgig")
 text = "TRY AGAIN"
 
 [node name="FiredEmployees" parent="EndScreen" instance=ExtResource("1_rvyh8")]
@@ -421,9 +442,9 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.825
+anchor_top = 0.8
 anchor_right = 0.5
-anchor_bottom = 0.825
+anchor_bottom = 0.8
 offset_left = -32.0
 offset_top = -158.0
 offset_right = 32.0
@@ -441,7 +462,8 @@ volume_db = -5.0
 volume_db = -5.0
 
 [node name="Ambient_loop" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+volume_db = -15.0
+pitch_scale = 0.5
 
 [node name="Ambient_hit" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0

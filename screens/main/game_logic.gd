@@ -16,6 +16,7 @@ extends Control
 @onready var training = %Training
 @onready var hiring: Hiring = %Hiring
 @onready var firing: = %Firing
+@onready var fired_employees: SlotMenu = %FiredEmployees
 
 func _ready():
 	status_bar.set_initial_money()
@@ -50,15 +51,21 @@ func score_round():
 	# update levelu
 	var last_round_end = rounds_bar.set_next_round()
 	if last_round_end: #_step != MM.ROUNDS:
-		%EndLabel.text = "You win:\nYour score is\n%s" % money
+		%EndLabel.text = "Victory!\nYour score is\n%s" % money
 		%EndScreen.visible = true
-		SoundManager.play_sound(ambient_loop,SoundManager.SOUND_VICTORY)
+		fired_employees.clear_employees()
+		fired_employees.generate_employees(status_bar._fired_employees)
+		ambient_loop.stop()
+		SoundManager.play_sound(screen_sound,SoundManager.SOUND_VICTORY)
 		return
 	
 	if money < 0:
-		%EndLabel.text = "Game Over:\nYour capital is negative.\nBetter luck next time!"
+		%EndLabel.text = "Game Over :(\nYou are out of money.\nBetter luck next time!"
 		%EndScreen.visible = true
-		SoundManager.play_sound(ambient_loop,SoundManager.SOUND_DEFEAT)
+		ambient_loop.stop()
+		fired_employees.clear_employees()
+		fired_employees.generate_employees(status_bar._fired_employees)
+		SoundManager.play_sound(screen_sound,SoundManager.SOUND_DEFEAT)
 		#print("THE END - zero capital!")
 		return
 	
