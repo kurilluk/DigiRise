@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6htqh58a4vyj"]
+
+[ext_resource type="Script" path="res://assets/sounds/bgm_manager.gd" id="1_0w3qm"]
+
+[node name="BGM_Manager" type="Node"]
+process_mode = 3
+script = ExtResource("1_0w3qm")
+
+[node name="HIT_Player" type="AudioStreamPlayer" parent="."]
+bus = &"BGM"
+
+[node name="Ambient_Player" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+bus = &"AMB"

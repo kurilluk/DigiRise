@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://trc57sr6ulro"]
+
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_u25my"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3um22"]
+bg_color = Color(0.196078, 0.2, 0.282353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n4dn"]
+bg_color = Color(0.247059, 0.25098, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpgwm"]
+bg_color = Color(0.203922, 0.588235, 0.717647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hgig"]
+bg_color = Color(0.196078, 0.2, 0.282353, 1)
+
+[node name="EndScreen" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0799, 0.084405, 0.17, 0.721569)
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+custom_minimum_size = Vector2(640, 128)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.259
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3um22")
+
+[node name="EndLabel" type="Label" parent="Background/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONGRATULATION!
+YOUR SCORE IS:
+"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Button2" type="Button" parent="Background/PanelContainer/EndLabel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = 149.28
+offset_right = 160.0
+offset_bottom = 209.28
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_3n4dn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpgwm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hgig")
+text = "TRY AGAIN"
+
+[node name="FiredEmployees" parent="." instance=ExtResource("1_u25my")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+offset_left = -32.0
+offset_top = -158.0
+offset_right = 32.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+NAME = "Fired Employees"
+EMPTY_SLOTS = false
+MEEPLE_levels = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])

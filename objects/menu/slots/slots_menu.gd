@@ -102,7 +102,8 @@ func set_locked(value : bool):
 			slot.lock_meeple(value)
 			slot.update_visuals()
 			if value:
-				SoundManager.play_sound(slot_menu_sound, SoundManager.SOUND_LOCK)
+				SFX.play(SFX.SOUND_LOCK)
+				#SoundManager.play_sound(slot_menu_sound, SoundManager.SOUND_LOCK)
 
 func upskill_slots(trainer_level: int):
 	if slots:
@@ -110,7 +111,7 @@ func upskill_slots(trainer_level: int):
 			var meeple_level = slot.get_meeple_level()
 			if meeple_level < trainer_level and slot.get_meeple_type() == MM.TYPES.INTERNAL: # TODO more sofisticated calculation
 				var ratio : float = float(trainer_level) / (float(trainer_level) - float(meeple_level))
-				if  ratio < 2:
+				if  ratio <= 2.5:
 					slot.set_meeple_upskill(2)
 				else:
 					slot.set_meeple_upskill(1)

@@ -75,7 +75,8 @@ func update_visuals():
 func _get_drag_data(_at_position):
 	if meeple_type == MM.TYPES.EMPTY or _is_locked:
 		return null
-	SoundManager.play_drag_click(meeple_sound)
+	SFX.play(SFX.SOUND_DRAG)
+	#SoundManager.play_drag_click(meeple_sound)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_drag_preview(make_drag_preview())
 	return self

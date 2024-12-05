@@ -59,9 +59,10 @@ func clear_projects_on_market():
 		project.queue_free()
 
 func on_next_step():
-	clear_projects_on_market()
-	_phase = _phase + 1
-	generate_projects(_projects_count, _phase)
+	#clear_projects_on_market()
+	#_phase = _phase + 1
+	#generate_projects(_projects_count, _phase)
+	pass
 	
 func calculate_income() -> int:
 	if not projects:

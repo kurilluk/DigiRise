@@ -27,8 +27,8 @@ func check_project_status():
 
 func set_is_done(value : bool):
 	if !_is_done and value:
-		# TODO play sound
-		SoundManager.play_sound(project_sound, SoundManager.SOUND_PROJECT_DONE)
+		SFX.play(SFX.SOUND_PROJECT_DONE)		
+		#SoundManager.play_sound(project_sound, SoundManager.SOUND_PROJECT_DONE)
 	_is_done = value
 
 func update_income():
@@ -68,14 +68,15 @@ func set_requirements(req_levels: Array[int]):
 
 func calculate_project_price(req_levels: Array[int]) -> int:
 	var expected_expanses = calculate_expected_expanses(req_levels)
-	var value = expected_expanses * GameManager.PROFIT # TODO experiment with the value or make it dynamic based on game steps
-	return value
+	var profit = randf_range(MM.PROJECT_MIN_PROFIT, MM.PROJECT_MAX_PROFIT) #MM.PROJECT_PROFIT # TODO experiment with the value or make it dynamic based on game steps
+	var _value = expected_expanses * profit
+	return _value
 
 func calculate_expected_expanses(req_levels: Array[int]) -> int:
-	var value = 0
+	var _value = 0
 	for req_level in req_levels:
-		value += GameManager.PRICES[req_level]
-	return value
+		_value += MM.get_price(req_level)
+	return _value
 	
 #func calculate_real_expanses() -> int:
 	#var value = 0

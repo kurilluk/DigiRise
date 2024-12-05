@@ -1,16 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0mwsgnarsdny"]
+[gd_scene load_steps=22 format=3 uid="uid://ixorvqcbsmgb"]
 
-[ext_resource type="Script" path="res://screens/game/game_logic.gd" id="1_afsom"]
-[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="1_rvyh8"]
-[ext_resource type="Script" path="res://screens/game/next_round_button.gd" id="1_t8c36"]
-[ext_resource type="Script" path="res://objects/bar/rounds/rounds_bar.gd" id="2_3o6hu"]
-[ext_resource type="Script" path="res://screens/game/status_bar.gd" id="2_iqawi"]
-[ext_resource type="PackedScene" uid="uid://cxmua0q1w3x83" path="res://objects/training/experts.tscn" id="4_2w8ak"]
-[ext_resource type="PackedScene" uid="uid://d1amnq6bhsbss" path="res://objects/training/training.tscn" id="4_mwxem"]
-[ext_resource type="PackedScene" uid="uid://bdngjuar4w214" path="res://objects/hiring/hiring.tscn" id="4_od6yh"]
-[ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="6_4oh0f"]
-[ext_resource type="PackedScene" uid="uid://41tf7qbk2uum" path="res://objects/firing/firing.tscn" id="9_yjmog"]
-[ext_resource type="Texture2D" uid="uid://c2lf0v2bswy3b" path="res://_resources/images/Splash screen.png" id="11_s05y6"]
+[ext_resource type="Script" path="res://screens/game/game_logic.gd" id="1_kpcxm"]
+[ext_resource type="Script" path="res://screens/game/next_round_button.gd" id="2_vhn7j"]
+[ext_resource type="Script" path="res://objects/bar/rounds/rounds_bar.gd" id="3_q1r6f"]
+[ext_resource type="PackedScene" uid="uid://ylhyi4m5tx7d" path="res://objects/menu/slots/slots_menu.tscn" id="4_d4f22"]
+[ext_resource type="PackedScene" uid="uid://bdngjuar4w214" path="res://objects/hiring/hiring.tscn" id="5_euwh1"]
+[ext_resource type="PackedScene" uid="uid://41tf7qbk2uum" path="res://objects/firing/firing.tscn" id="6_hsp15"]
+[ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="7_fw2vd"]
+[ext_resource type="PackedScene" uid="uid://cxmua0q1w3x83" path="res://objects/training/experts.tscn" id="8_e2r11"]
+[ext_resource type="PackedScene" uid="uid://d1amnq6bhsbss" path="res://objects/training/training.tscn" id="9_2cjod"]
+[ext_resource type="Script" path="res://screens/game/status_bar.gd" id="10_k0y20"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8e5a"]
 
@@ -40,20 +39,14 @@ bg_color = Color(0.203922, 0.588235, 0.717647, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hgig"]
 bg_color = Color(0.196078, 0.2, 0.282353, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lf5jd"]
-bg_color = Color(0.203922, 0.588235, 0.717647, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sl8n"]
-bg_color = Color(0.14902, 0.403922, 0.529412, 1)
-
-[node name="MainScreen" type="Control"]
+[node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_afsom")
+script = ExtResource("1_kpcxm")
 
 [node name="GlobalTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -101,7 +94,7 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "NEXT ROUND"
 icon_alignment = 1
-script = ExtResource("1_t8c36")
+script = ExtResource("2_vhn7j")
 
 [node name="RoundsBar" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -117,7 +110,7 @@ offset_bottom = 67.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-script = ExtResource("2_3o6hu")
+script = ExtResource("3_q1r6f")
 
 [node name="Rounds_label" type="Label" parent="RoundsBar"]
 custom_minimum_size = Vector2(320, 0)
@@ -157,7 +150,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/v_separation = 64
 
-[node name="External" parent="MainMenu/LeftContainer" instance=ExtResource("1_rvyh8")]
+[node name="External" parent="MainMenu/LeftContainer" instance=ExtResource("4_d4f22")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -167,11 +160,11 @@ TYPE = 1
 EMPTY_SLOTS = false
 MEEPLE_levels = Array[int]([5, 5, 10, 10])
 
-[node name="Hiring" parent="MainMenu/LeftContainer" instance=ExtResource("4_od6yh")]
+[node name="Hiring" parent="MainMenu/LeftContainer" instance=ExtResource("5_euwh1")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Firing" parent="MainMenu/LeftContainer" instance=ExtResource("9_yjmog")]
+[node name="Firing" parent="MainMenu/LeftContainer" instance=ExtResource("6_hsp15")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -180,7 +173,7 @@ layout_mode = 2
 theme_override_constants/separation = 76
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7swpi")
 
-[node name="Market" parent="MainMenu" instance=ExtResource("6_4oh0f")]
+[node name="Market" parent="MainMenu" instance=ExtResource("7_fw2vd")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(712, 468)
 layout_mode = 2
@@ -196,22 +189,22 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/v_separation = 64
 
-[node name="Experts" parent="MainMenu/RightContainer" instance=ExtResource("4_2w8ak")]
+[node name="Experts" parent="MainMenu/RightContainer" instance=ExtResource("8_e2r11")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Training" parent="MainMenu/RightContainer" instance=ExtResource("4_mwxem")]
+[node name="Training" parent="MainMenu/RightContainer" instance=ExtResource("9_2cjod")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Fired" parent="MainMenu/RightContainer" instance=ExtResource("1_rvyh8")]
+[node name="Fired" parent="MainMenu/RightContainer" instance=ExtResource("4_d4f22")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 NAME = "Firing:"
 MEEPLE_levels = Array[int]([0, 0, 0, 0])
 
-[node name="Hiring2" parent="MainMenu/RightContainer" instance=ExtResource("4_od6yh")]
+[node name="Hiring2" parent="MainMenu/RightContainer" instance=ExtResource("5_euwh1")]
 visible = false
 layout_mode = 2
 
@@ -231,7 +224,7 @@ grow_vertical = 0
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Test" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+[node name="Test" parent="MeepleMenu" instance=ExtResource("4_d4f22")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
@@ -239,7 +232,7 @@ NAME = "Test"
 TYPE = 1
 MEEPLE_levels = Array[int]([5, 5, 10])
 
-[node name="Internal" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+[node name="Internal" parent="MeepleMenu" instance=ExtResource("4_d4f22")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -247,7 +240,7 @@ NAME = "UNUTILIZED EMPLOYEES"
 EMPTY_SLOTS = false
 MEEPLE_levels = Array[int]([0, 0, 1, 1, 2, 2, 3])
 
-[node name="Hire" parent="MeepleMenu" instance=ExtResource("1_rvyh8")]
+[node name="Hire" parent="MeepleMenu" instance=ExtResource("4_d4f22")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
@@ -271,7 +264,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
-script = ExtResource("2_iqawi")
+script = ExtResource("10_k0y20")
 
 [node name="Money_container" type="PanelContainer" parent="StatusBar"]
 layout_mode = 2
@@ -436,7 +429,7 @@ YOUR SCORE IS:
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Button2" type="Button" parent="EndScreen/Background/PanelContainer/EndLabel"]
+[node name="ResetButton" type="Button" parent="EndScreen/Background/PanelContainer/EndLabel"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
 anchors_preset = 7
@@ -455,7 +448,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_fpgwm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_4hgig")
 text = "TRY AGAIN"
 
-[node name="FiredEmployees" parent="EndScreen" instance=ExtResource("1_rvyh8")]
+[node name="FiredEmployees" parent="EndScreen" instance=ExtResource("4_d4f22")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -472,40 +465,6 @@ grow_vertical = 0
 NAME = "Fired Employees"
 EMPTY_SLOTS = false
 MEEPLE_levels = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
-
-[node name="IntroPage" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="IntroPage"]
-layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("11_s05y6")
-stretch_mode = 3
-
-[node name="Button" type="Button" parent="IntroPage"]
-custom_minimum_size = Vector2(354, 64)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -168.0
-offset_top = -448.0
-offset_right = 186.0
-offset_bottom = -248.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.0784314, 0.0823529, 0.168627, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_lf5jd")
-theme_override_styles/normal = SubResource("StyleBoxFlat_7sl8n")
-text = "RUN THE GAME"
 
 [node name="Screen_sound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -532,4 +491,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="EndScreen/Background/PanelContainer/EndLabel/Button2" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="EndScreen/Background/PanelContainer/EndLabel/ResetButton" to="." method="_on_reset_pressed"]

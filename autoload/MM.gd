@@ -4,6 +4,9 @@ extends Node
 const ROUNDS : int = 15
 const INITIAL_MONEY : int = 1500
 
+const PROJECT_MIN_PROFIT: float = 1.2
+const PROJECT_MAX_PROFIT: float = 1.8
+
 enum TYPES {
 	FREE = -2,
 	EMPTY = -1,

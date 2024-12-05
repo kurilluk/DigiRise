@@ -141,7 +141,8 @@ func _drop_data(_pos, data):
 	if not new_meeple:
 		return
 		
-	SoundManager.play_drop_click(meeple_sound)
+	SFX.play(SFX.SOUND_DROP)
+	#SoundManager.play_drop_click(meeple_sound)
 	self.meeple_type = new_meeple.get_meeple_type()
 	self.meeple_level = new_meeple.get_meeple_level()
 	self.set_meeple_upskill(0)

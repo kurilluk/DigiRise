@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/03_G#maj9_LOOP_seamless_MIXED.ogg-7962f8c8919
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

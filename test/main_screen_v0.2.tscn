@@ -1,0 +1,600 @@
+[gd_scene load_steps=15 format=3 uid="uid://c33qrdm38lrt8"]
+
+[ext_resource type="Script" path="res://screens/game/game_logic.gd" id="1_t3ikf"]
+[ext_resource type="PackedScene" uid="uid://goh2wnysibo4" path="res://objects/employee/external/external.tscn" id="2_qkwmw"]
+[ext_resource type="Script" path="res://objects/upskill/upskill.gd" id="3_ywypf"]
+[ext_resource type="PackedScene" uid="uid://dv73rqal2aqgs" path="res://objects/employee/employee.tscn" id="4_vf7ka"]
+[ext_resource type="PackedScene" uid="uid://ckclcfxxs1obv" path="res://objects/market/market.tscn" id="5_6qex3"]
+[ext_resource type="PackedScene" uid="uid://cfncrhmusammc" path="res://objects/internal/hire-fire.tscn" id="6_hbx2y"]
+[ext_resource type="PackedScene" uid="uid://ip43o7ukforf" path="res://objects/internal/internal.tscn" id="7_5rx52"]
+[ext_resource type="Script" path="res://objects/internal/fire_only.gd" id="8_5xu6c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fek3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4md2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdyj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iduvf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfi7y"]
+bg_color = Color(0.164706, 0.490196, 0.294118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iefxg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_t3ikf")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2664, 0.347553, 0.37, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopPanel" type="PanelContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/TopPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/TopPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Spacer_Left" type="ColorRect" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Button" type="Button" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Left"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+text = " GAME RESET"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Steps" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ROUND:"
+horizontal_alignment = 1
+
+[node name="Steps_value" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "1/15"
+horizontal_alignment = 1
+
+[node name="Money" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MONEY:
+3500"
+horizontal_alignment = 1
+
+[node name="Profit_Loss" type="Label" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PROFIT/LOSS:
+3500"
+horizontal_alignment = 1
+
+[node name="Spacer_Right" type="ColorRect" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="CheckButton" type="CheckButton" parent="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Right"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fek3h")
+button_pressed = true
+text = "MUSIC"
+
+[node name="HSeparator" type="HSeparator" parent="MainContainer/TopPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CentralPanel" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LeftPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralPanel/LeftPanel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="External" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer" instance=ExtResource("2_qkwmw")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Education" type="PanelContainer" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4md2u")
+script = ExtResource("3_ywypf")
+
+[node name="BG_Color_Top" type="ColorRect" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="BG_Color" type="ColorRect" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="CentralPanel" type="VBoxContainer" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education"]
+layout_mode = 2
+
+[node name="Upskill" type="Label" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "   Training 300, UPSkill +1"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Fee_value" type="Label" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Posibilities" type="HBoxContainer" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Employee" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee2" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee3" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee4" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Posibilities" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Upskill_value" type="Label" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 3
+text = "---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upskill_label" type="Label" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Upskill_value"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "Expenses:"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Upskill_label2" type="Label" parent="MainContainer/CentralPanel/LeftPanel/VBoxContainer/Education/CentralPanel/Upskill_value"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "Upskill expenses:"
+vertical_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer/CentralPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Market" parent="MainContainer/CentralPanel/VBoxContainer" instance=ExtResource("5_6qex3")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainContainer/CentralPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightPanel" type="PanelContainer" parent="MainContainer/CentralPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomPanel_middle" type="PanelContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="Resources" type="HBoxContainer" parent="MainContainer/BottomPanel_middle"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Hire" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("6_hbx2y")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="dummy_hf" type="PanelContainer" parent="MainContainer/BottomPanel_middle/Resources"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/dummy_hf"]
+layout_mode = 2
+alignment = 1
+
+[node name="Employee" parent="MainContainer/BottomPanel_middle/Resources/dummy_hf/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee3" parent="MainContainer/BottomPanel_middle/Resources/dummy_hf/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee2" parent="MainContainer/BottomPanel_middle/Resources/dummy_hf/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Internal" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("7_5rx52")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="dummy_ext" type="PanelContainer" parent="MainContainer/BottomPanel_middle/Resources"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/dummy_ext"]
+layout_mode = 2
+alignment = 1
+
+[node name="Employee" parent="MainContainer/BottomPanel_middle/Resources/dummy_ext/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee3" parent="MainContainer/BottomPanel_middle/Resources/dummy_ext/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Employee2" parent="MainContainer/BottomPanel_middle/Resources/dummy_ext/Employees" instance=ExtResource("4_vf7ka")]
+layout_mode = 2
+
+[node name="Fire_only" type="PanelContainer" parent="MainContainer/BottomPanel_middle/Resources"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vdyj0")
+script = ExtResource("8_5xu6c")
+
+[node name="BG_Color_Top" type="ColorRect" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
+visible = false
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="BG_Color" type="ColorRect" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="CentralPanel" type="VBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/Fire_only"]
+layout_mode = 2
+
+[node name="Intern_expenses_label" type="Label" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Fire"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Expenses_value" type="Label" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Employees" type="HBoxContainer" parent="MainContainer/BottomPanel_middle/Resources/Fire_only/CentralPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="External" parent="MainContainer/BottomPanel_middle/Resources" instance=ExtResource("2_qkwmw")]
+visible = false
+layout_mode = 2
+
+[node name="BottomPanel_side" type="PanelContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Spacer_Left" type="ColorRect" parent="MainContainer/BottomPanel_side"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Spacer_Right" type="ColorRect" parent="MainContainer/BottomPanel_side"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Main_list" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 880.0
+offset_right = 350.0
+offset_bottom = 1080.0
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="Money_container" type="MarginContainer" parent="Main_list"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="ColorRect" type="ColorRect" parent="Main_list/Money_container"]
+layout_mode = 2
+color = Color(0.0666667, 0.466667, 0.588235, 1)
+
+[node name="Text" type="VBoxContainer" parent="Main_list/Money_container"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="Main_list/Money_container/Text"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MONEY:"
+
+[node name="Money_value" type="Label" parent="Main_list/Money_container/Text"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "3500"
+horizontal_alignment = 1
+
+[node name="ProfitLoss_container" type="MarginContainer" parent="Main_list"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ColorRect" type="ColorRect" parent="Main_list/ProfitLoss_container"]
+layout_mode = 2
+color = Color(0.164706, 0.490196, 0.294118, 1)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Main_list/ProfitLoss_container"]
+layout_mode = 2
+
+[node name="Profit-Loss" type="Label" parent="Main_list/ProfitLoss_container/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PROFIT/LOSS:"
+
+[node name="Profit-Loss_value" type="Label" parent="Main_list/ProfitLoss_container/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "3500"
+horizontal_alignment = 1
+
+[node name="LeftBottom_panel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 350.0
+grow_vertical = 0
+
+[node name="Button_Next" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iduvf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dfi7y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iefxg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dfi7y")
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "D O N E
+"
+icon_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="EndScreen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.301961, 0.301961, 0.301961, 0.898039)
+
+[node name="PanelContainer" type="PanelContainer" parent="EndScreen/Background"]
+custom_minimum_size = Vector2(320, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndLabel" type="Label" parent="EndScreen/Background/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONGRATULATION!
+YOUR SCORE IS:
+"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Button2" type="Button" parent="EndScreen/Background/PanelContainer/EndLabel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+offset_left = 2.0
+offset_top = 113.0
+offset_right = 322.0
+offset_bottom = 173.0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+text = "TRY AGAIN"
+
+[connection signal="pressed" from="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Left/Button" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MainContainer/TopPanel/VBoxContainer/HBoxContainer/Spacer_Right/CheckButton" to="." method="_on_music_is_pressed"]
+[connection signal="pressed" from="Button_Next" to="." method="_on_next_phase_button_pressed"]
+[connection signal="pressed" from="EndScreen/Background/PanelContainer/EndLabel/Button2" to="." method="_on_reset_pressed"]

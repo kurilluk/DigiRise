@@ -12,19 +12,22 @@ config_version=5
 
 config/name="DigiRiSE"
 config/version="0.2"
-run/main_scene="res://test/footer_menu_test.tscn"
+run/main_scene="res://screens/main/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.0784314, 0.0823529, 0.168627, 1)
-boot_splash/image="res://_resources/images/poster 97x100.png"
-config/icon="res://_resources/icons/icon.svg"
+boot_splash/image="res://assets/textures/screen/Splash screen.png"
+config/icon="res://assets/textures/icon/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://setup/audio_bus_layout.tres"
 
 [autoload]
 
-GameManager="*res://autoload/game_manager.gd"
 SignalManager="*res://autoload/signal_manager.gd"
-Music="res://autoload/music.tscn"
-SoundManager="*res://autoload/sound_manager.gd"
 MM="*res://autoload/MM.gd"
+SFX="*res://assets/sounds/sfx_manager.tscn"
+BGM="*res://assets/sounds/bgm_manager.tscn"
 
 [display]
 
@@ -41,3 +44,4 @@ theme/default_font_multichannel_signed_distance_field=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.0784314, 0.0823529, 0.168627, 1)

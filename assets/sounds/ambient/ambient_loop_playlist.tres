@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=5 format=3 uid="uid://cor2lvjrm83hr"]
+
+[ext_resource type="AudioStream" uid="uid://cshke7ti0hway" path="res://assets/sounds/ambient/loop/01_Amajor9_LOOP_seamless_MIXED.ogg" id="1_vujwg"]
+[ext_resource type="AudioStream" uid="uid://dm0jpalmjm02n" path="res://assets/sounds/ambient/loop/02_Cmajor9_LOOP_seamless_MIXED.ogg" id="2_te0ue"]
+[ext_resource type="AudioStream" uid="uid://5pvom2cgtovo" path="res://assets/sounds/ambient/loop/03_G#maj9_LOOP_seamless_MIXED.ogg" id="3_5rw6m"]
+[ext_resource type="AudioStream" uid="uid://dx02atbojtxad" path="res://assets/sounds/ambient/loop/04_Aminor9_LOOP_seamless_MIXED.ogg" id="4_4ebi5"]
+
+[resource]
+fade_time = 1.0
+stream_count = 4
+stream_0 = ExtResource("1_vujwg")
+stream_1 = ExtResource("2_te0ue")
+stream_2 = ExtResource("3_5rw6m")
+stream_3 = ExtResource("4_4ebi5")
