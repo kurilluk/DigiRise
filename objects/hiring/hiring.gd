@@ -15,6 +15,8 @@ var _is_activated: bool
 var _price: int
 var _income: int
 
+var MEEPLE_levels: Array[int] = [0,1,2]
+
 func _ready():
 	reset_menu()
 	SignalManager.on_project_meeple_change.connect(check_project_status)	
@@ -40,8 +42,26 @@ func check_project_status():
 func activate():
 	if _is_done and not _is_activated:
 		newcomers.TYPE = MM.TYPES.NEW
+		generate_employees()
 		slot_menu.set_locked(true)
 		_is_activated = true
+
+func generate_employees():
+	randomize() # Ensure randomness
+	var new_MEEPLE_levels: Array[int] = []
+	var HR_level = slot_menu.slots.get_child(0).get_meeple_level()
+	for value in MEEPLE_levels:
+		var random_value = randi_range(0, HR_level-2) # Generate a random integer in the range [0, 8]
+		random_value += value
+		if random_value > 10:
+			random_value = 10
+		elif random_value < 0:
+			random_value = 0
+		new_MEEPLE_levels.append(random_value)
+	#print(new_MEEPLE_levels)
+	new_MEEPLE_levels.sort()
+	newcomers.clear_employees()
+	newcomers.generate_employees(new_MEEPLE_levels)
 
 func update_expanses():
 	var expanses = slot_menu.get_prices_sum()

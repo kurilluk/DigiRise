@@ -160,11 +160,11 @@ TYPE = 1
 EMPTY_SLOTS = false
 MEEPLE_levels = Array[int]([5, 5, 10, 10])
 
-[node name="Hiring" parent="MainMenu/LeftContainer" instance=ExtResource("5_euwh1")]
+[node name="Experts" parent="MainMenu/LeftContainer" instance=ExtResource("8_e2r11")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Firing" parent="MainMenu/LeftContainer" instance=ExtResource("6_hsp15")]
+[node name="Training" parent="MainMenu/LeftContainer" instance=ExtResource("9_2cjod")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -189,11 +189,11 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/v_separation = 64
 
-[node name="Experts" parent="MainMenu/RightContainer" instance=ExtResource("8_e2r11")]
+[node name="Hiring" parent="MainMenu/RightContainer" instance=ExtResource("5_euwh1")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Training" parent="MainMenu/RightContainer" instance=ExtResource("9_2cjod")]
+[node name="Firing" parent="MainMenu/RightContainer" instance=ExtResource("6_hsp15")]
 unique_name_in_owner = true
 layout_mode = 2
 
