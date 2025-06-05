@@ -57,28 +57,21 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-allowed_types = Array[int]([0, 1, -1])
-level = -1
 
 [node name="Slot4" parent="HBoxContainer" instance=ExtResource("1_w5lyk")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-allowed_types = Array[int]([0, 1, -1])
-level = -1
 
 [node name="Slot5" parent="HBoxContainer" instance=ExtResource("1_w5lyk")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-allowed_types = Array[int]([0, 1, -1])
-level = -1
 
 [node name="Slot2" parent="HBoxContainer" instance=ExtResource("1_w5lyk")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-level = -1
 
 [node name="Meeple4" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 1
@@ -87,8 +80,6 @@ offset_top = 512.0
 offset_right = 616.0
 offset_bottom = 608.0
 mouse_default_cursor_shape = 2
-type = 1
-level = 4
 
 [node name="Slot3" parent="." instance=ExtResource("1_w5lyk")]
 layout_mode = 2
@@ -98,7 +89,6 @@ offset_right = 1070.0
 offset_bottom = 811.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-level = -1
 
 [node name="Slot4" parent="." instance=ExtResource("1_w5lyk")]
 layout_mode = 2
@@ -108,7 +98,6 @@ offset_right = 1242.0
 offset_bottom = 757.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-level = -1
 
 [node name="Slot5" parent="." instance=ExtResource("1_w5lyk")]
 layout_mode = 2
@@ -119,7 +108,6 @@ offset_bottom = 678.0
 rotation = -2.87979
 size_flags_horizontal = 4
 size_flags_vertical = 4
-level = -1
 
 [node name="Slot6" parent="." instance=ExtResource("1_w5lyk")]
 layout_mode = 2
@@ -130,7 +118,6 @@ offset_bottom = 425.0
 rotation = -2.87979
 size_flags_horizontal = 4
 size_flags_vertical = 4
-level = -1
 
 [node name="Meeple8" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 1
@@ -139,12 +126,10 @@ offset_top = 667.0
 offset_right = 525.0
 offset_bottom = 731.0
 mouse_default_cursor_shape = 2
-level = 12
 
 [node name="Meeple5" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 1
 mouse_default_cursor_shape = 2
-level = 10
 
 [node name="Meeple6" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 1
@@ -153,7 +138,6 @@ offset_top = 630.0
 offset_right = 718.0
 offset_bottom = 694.0
 mouse_default_cursor_shape = 2
-level = 6
 
 [node name="Meeple7" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 0
@@ -162,8 +146,6 @@ offset_top = 678.0
 offset_right = 860.0
 offset_bottom = 774.0
 mouse_default_cursor_shape = 2
-type = 2
-level = 6
 
 [node name="Meeple9" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 0
@@ -172,8 +154,6 @@ offset_top = 370.0
 offset_right = 479.0
 offset_bottom = 466.0
 mouse_default_cursor_shape = 2
-type = 1
-level = 6
 
 [node name="Meeple10" parent="." instance=ExtResource("2_wq2ld")]
 layout_mode = 0
@@ -182,5 +162,3 @@ offset_top = 304.0
 offset_right = 589.0
 offset_bottom = 400.0
 mouse_default_cursor_shape = 2
-type = 1
-level = 6
